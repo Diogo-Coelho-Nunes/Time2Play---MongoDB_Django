@@ -21,4 +21,6 @@ from Time2Playapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.MainPage),
+    path('login/registo/', views.popularUser),
+    path('login/', views.login),
 ]

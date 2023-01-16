@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from Time2Playapp import database
 from Time2Playapp.models import *
 from Time2Playapp.database import *
+from .forms import addPrdtForm, addSaleForm
 
 # Create your views here.
 def MainPage(request):
@@ -67,18 +68,33 @@ def c1(request):
 
 def addPrdt(request):
     if request.method == 'POST':
-        nome = request.POST.get('ProductName')
-        descricao = request.POST.get('ProductDescription')
-        preco = request.POST.get('ProductPrice')
-        quantidade = request.POST.get('ProductQuantity')
-        imagem = request.POST.get('ProductImage')
-        tipo = request.POST.get('ProductTypeId')
-        resultado = database.addPrdt(nome,descricao,preco,quantidade,imagem,tipo)
-        if resultado :
-            print('Produto adicionado com sucesso!')
+        # Handle form submission
+        form = addPrdtForm(request.POST,request.FILES)
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.save()
             return redirect('/c1')
-        else:
-            print('Erro no registo!')
-    context = {}
-    return render(request, 'C1_templates/InserirProdutos.html', context = context)
-    
+    else:
+        # Handle GET request
+        form = addPrdtForm()
+    return render(request, 'C1_templates/InserirProdutos.html', {'form': form})
+
+def listPrdt(request):
+    if request.method == 'GET':
+        products = Product.objects.all()
+        context = {'products': products}
+        return render(request, 'C1_templates/ListarProdutos.html', context=context)
+
+def addSale(request):
+    if request.method == 'POST':
+        # Handle form submission
+        form = addSaleForm(request.POST)
+        if form.is_valid():
+            sale = form.save(commit=False)
+            sale.save()
+            Product.objects.filter(ProductTypeId=Sales.ProductTypeId).update(Product.ProductPrice)
+            return redirect('/c1')
+    else:
+        # Handle GET request
+        form = addSaleForm()
+    return render(request, 'C1_templates/InserirPromocao.html', {'form': form})

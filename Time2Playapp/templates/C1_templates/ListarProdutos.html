@@ -1,0 +1,27 @@
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Produtos</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ products }}</h5>
+            {% for k in products %}
+            <p class="card-text">
+                <ul>
+                    <li>Nome: {{ k.ProductName }}</li>
+                    <li>Preço: {{ k.ProductPrice }}$</li>
+                    <li>Descrição: {{ k.ProductDescription }}</li>
+                    <li>Quantidade: {{ k.ProductQuantity }}</li>
+                    <li>Plataforma: {{ k.ProductTypeId }}</li>
+                </ul>
+                <br>
+                {% if k.ProductImage %}
+                <img src="/media/{{ k.ProductImage }}" width="500" height="250">
+                {% endif %}
+            </p>
+            {% endfor %}
+        </div>
+    </div>
+    
+{% endblock %}

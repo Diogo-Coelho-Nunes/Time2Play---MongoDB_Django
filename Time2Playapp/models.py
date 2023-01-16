@@ -24,14 +24,14 @@ class Product(models.Model):
     ProductPrice = models.FloatField()
     ProductQuantity = models.IntegerField()
     ProductImage = models.ImageField(null=True,blank=True,upload_to="images/")
-    ProductTypeId = models.CharField(max_length=100)
+    ProductTypeId = models.IntegerField()
     ProductStatus = models.BooleanField(default=True) #Ativo, Inativo, Fica "False" se o gestor enetender que não é um bom produto para venda
     ProductUserId = models.TextField(default='c1') #Id do utilizador que adicionou o produto: c1, parceiro
 
 #Sales model
 class Sales(models.Model):
     SalesId = models.AutoField(primary_key=True)
-    ProductTypeId = models.CharField(max_length=100)
+    ProductTypeId = models.IntegerField()
     Promotion = models.FloatField()
     
 #Cart model

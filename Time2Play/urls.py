@@ -28,4 +28,6 @@ urlpatterns = [
 
     path('c1/', views.c1),
     path('c1/addPrdt/', views.addPrdt),
+    path('c1/listPrdt/', views.listPrdt),
+    path('c1/sales/', views.addSale),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

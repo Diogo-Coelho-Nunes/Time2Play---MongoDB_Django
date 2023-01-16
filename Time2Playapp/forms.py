@@ -6,7 +6,7 @@ from .models import *
 class addPrdtForm(ModelForm):
     class Meta:
         model = Product
-        fields = ('ProductName', 'ProductDescription', 'ProductPrice', 'ProductQuantity', 'ProductImage', 'ProductTypeId')
+        fields = ('ProductName', 'ProductDescription', 'ProductPrice', 'ProductQuantity', 'ProductImage', 'ProductTypeId', 'ProductUserId')
         labels = {
             'ProductName': 'Nome do Produto',
             'ProductDescription': 'Descrição do Produto',
@@ -14,6 +14,7 @@ class addPrdtForm(ModelForm):
             'ProductQuantity': 'Quantidade do Produto',
             'ProductImage': 'Imagem do Produto',
             'ProductTypeId': 'Tipo do Produto',
+            'ProductUserId': 'Vendedor',
         }
         widgets = {
             'ProductName': forms.TextInput(attrs={'class': 'form-control'}),
@@ -22,7 +23,7 @@ class addPrdtForm(ModelForm):
             'ProductQuantity': forms.TextInput(attrs={'class': 'form-control'}),
             'ProductImage': '',
             'ProductTypeId': forms.Select(attrs={'class': 'form-control'}, choices=ProductType.objects.all().values_list('ProductTypeId', 'ProductTypeName')),
-
+            'ProductUserId': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 class addSaleForm(ModelForm):
@@ -36,4 +37,15 @@ class addSaleForm(ModelForm):
         widgets = {
             'ProductTypeId': forms.Select(attrs={'class': 'form-control'}, choices=ProductType.objects.all().values_list('ProductTypeId', 'ProductTypeName')),
             'Promotion': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+class removeSaleForm(ModelForm):
+    class Meta:
+        model = Sales
+        fields = ['ProductTypeId']
+        labels = {
+            'ProductTypeId': 'Tipo de Produto'
+        }
+        widgets = {
+            'ProductTypeId': forms.Select(attrs={'class': 'form-control'}, choices=ProductType.objects.all().values_list('ProductTypeId', 'ProductTypeName'))
         }

@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from Time2Playapp import database
 from Time2Playapp.models import *
 from Time2Playapp.database import *
-from .forms import addPrdtForm, addSaleForm
+from .forms import addPrdtForm, addSaleForm, removeSaleForm
 
 # Create your views here.
 def MainPage(request):
@@ -92,9 +92,37 @@ def addSale(request):
         if form.is_valid():
             sale = form.save(commit=False)
             sale.save()
-            Product.objects.filter(ProductTypeId=Sales.ProductTypeId).update(Product.ProductPrice)
+            product = Product.objects.get(ProductTypeId=sale.ProductTypeId)
+            product.ProductPrice = product.ProductPrice * (1-(sale.Promotion/100))
+            product.save()
             return redirect('/c1')
     else:
         # Handle GET request
         form = addSaleForm()
     return render(request, 'C1_templates/InserirPromocao.html', {'form': form})
+
+def removeSale(request):
+    if request.method == 'POST':
+        # Handle form submission
+        form = removeSaleForm(request.POST)
+        if form.is_valid():
+            sale = Sales.objects.filter(ProductTypeId=form.cleaned_data['ProductTypeId'])
+            for sale in sale:
+                try:
+                    product = Product.objects.get(ProductTypeId=sale.ProductTypeId)
+                    product.ProductPrice = product.ProductPrice / (1-(sale.Promotion/100))
+                    product.save()
+                    sale.delete()
+                except: Product.DoesNotExist
+                pass
+            return redirect('/c1')
+    else:
+        # Handle GET request
+        form = removeSaleForm()
+    return render(request, 'C1_templates/RemoverPromocao.html', {'form': form})
+
+def listPartnerPrdt(request):
+    if request.method == 'GET':
+        products = database.listPartnerPrdt()
+        context = {'products': products}
+        return render(request, 'C1_templates/ListarProdutosPartner.html', context=context)

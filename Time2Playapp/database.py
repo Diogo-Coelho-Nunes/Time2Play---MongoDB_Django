@@ -50,3 +50,8 @@ def addPrdt(nome, descricao, preco,quantidade,imagem,tipo):
     
     registo = Product(ProductName=nome, ProductDescription=descricao, ProductPrice=preco, ProductQuantity=quantidade, ProductImage=imagem, ProductTypeId=tipo)
     registo.save()
+
+
+def listPartnerPrdt():
+    if Product.objects.filter(ProductUserId='Parceiro' or 'parceiro'):
+        return Product.objects.filter(ProductUserId='Parceiro' or 'parceiro')

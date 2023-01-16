@@ -172,12 +172,11 @@ a{
 .category-container{
     display:flex;
     margin:auto;
-    width:1200px;
     justify-content:center;
     align-items:center;
+    columns: 5;
     padding:20px;
-    border: 1px solid rgba(0,0,0,0.04);
-    background-color:#f5f5f544; 
+    
 }
 
 .category-box{

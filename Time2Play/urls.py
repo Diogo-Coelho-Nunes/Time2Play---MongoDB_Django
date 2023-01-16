@@ -30,4 +30,6 @@ urlpatterns = [
     path('c1/addPrdt/', views.addPrdt),
     path('c1/listPrdt/', views.listPrdt),
     path('c1/sales/', views.addSale),
+    path('c1/removeSales/', views.removeSale),
+    path('c1/partnerPrdt/', views.listPartnerPrdt),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

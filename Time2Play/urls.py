@@ -17,10 +17,15 @@ from xml.etree.ElementInclude import include
 from django.contrib import admin
 from django.urls import path
 from Time2Playapp import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.MainPage),
     path('login/registo/', views.popularUser),
     path('login/', views.login),
-]
+
+    path('c1/', views.c1),
+    path('c1/addPrdt/', views.addPrdt),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

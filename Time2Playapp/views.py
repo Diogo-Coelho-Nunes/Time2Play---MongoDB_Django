@@ -59,3 +59,26 @@ def login(request):
            return redirect('/cliente')
     context = {}
     return render(request, 'login.html', context = context)
+
+#C1
+def c1(request):
+    context = {}
+    return render(request, 'C1_templates/Comercial1_MainPage.html', context = context)
+
+def addPrdt(request):
+    if request.method == 'POST':
+        nome = request.POST.get('ProductName')
+        descricao = request.POST.get('ProductDescription')
+        preco = request.POST.get('ProductPrice')
+        quantidade = request.POST.get('ProductQuantity')
+        imagem = request.POST.get('ProductImage')
+        tipo = request.POST.get('ProductTypeId')
+        resultado = database.addPrdt(nome,descricao,preco,quantidade,imagem,tipo)
+        if resultado :
+            print('Produto adicionado com sucesso!')
+            return redirect('/c1')
+        else:
+            print('Erro no registo!')
+    context = {}
+    return render(request, 'C1_templates/InserirProdutos.html', context = context)
+    

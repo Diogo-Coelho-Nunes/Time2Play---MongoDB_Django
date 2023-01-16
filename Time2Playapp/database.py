@@ -32,3 +32,21 @@ def login(email, password):
             return False
     else:
         return False
+
+#C1
+def addPrdt(nome, descricao, preco,quantidade,imagem,tipo):
+    if tipo == '1':
+        id = ProductType.objects.get(ProductTypeId=1)
+        tipo = id.ProductTypeName
+    elif tipo == '2':
+        id = ProductType.objects.get(ProductTypeId=2)
+        tipo = id.ProductTypeName
+    elif tipo == '3':
+        id = ProductType.objects.get(ProductTypeId=3)
+        tipo = id.ProductTypeName
+    elif tipo == '4':
+        id = ProductType.objects.get(ProductTypeId=4)
+        tipo = id.ProductTypeName
+    
+    registo = Product(ProductName=nome, ProductDescription=descricao, ProductPrice=preco, ProductQuantity=quantidade, ProductImage=imagem, ProductTypeId=tipo)
+    registo.save()

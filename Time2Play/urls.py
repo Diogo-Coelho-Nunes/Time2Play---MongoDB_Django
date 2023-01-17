@@ -32,4 +32,7 @@ urlpatterns = [
     path('c1/sales/', views.addSale),
     path('c1/removeSales/', views.removeSale),
     path('c1/partnerPrdt/', views.listPartnerPrdt),
+    path('c1/partnerPrdt/AlterarStatusProduto/<int:ProductId>/', views.ChangePrdtStatus),
+    path('c1/chart/', views.count_products),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

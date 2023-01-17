@@ -3,7 +3,12 @@ from django.shortcuts import render, redirect
 from Time2Playapp import database
 from Time2Playapp.models import *
 from Time2Playapp.database import *
-from .forms import addPrdtForm, addSaleForm, removeSaleForm
+from .forms import addPrdtForm, addSaleForm, removeSaleForm, changeStatusForm
+from django.shortcuts import get_object_or_404
+import pygal
+import highcharts
+
+
 
 # Create your views here.
 def MainPage(request):
@@ -126,3 +131,23 @@ def listPartnerPrdt(request):
         products = database.listPartnerPrdt()
         context = {'products': products}
         return render(request, 'C1_templates/ListarProdutosPartner.html', context=context)
+
+def ChangePrdtStatus(request, ProductId):
+    product = get_object_or_404(Product, pk=ProductId)
+    if request.method == 'POST':
+        form = changeStatusForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('/c1')
+       
+    else:
+       form = changeStatusForm(instance=product)
+       return render(request, 'C1_templates/AlterarStatusProduto.html', {'form': form})
+
+def count_products(request):
+    product_count = Product.objects.filter().count()
+    bar_chart = pygal.Bar()
+    bar_chart.title = "Product Count"
+    bar_chart.add('Product', product_count)
+    chart = bar_chart.render_data_uri()
+    return render(request, 'C1_templates/count_products.html', {'chart': chart})

@@ -49,3 +49,14 @@ class removeSaleForm(ModelForm):
         widgets = {
             'ProductTypeId': forms.Select(attrs={'class': 'form-control'}, choices=ProductType.objects.all().values_list('ProductTypeId', 'ProductTypeName'))
         }
+
+class changeStatusForm(ModelForm):
+    class Meta:
+        model = Product
+        fields = ['ProductStatus']
+        labels = {
+            'ProductStatus': 'Estado do Produto'
+        }
+        widgets = {
+            'ProductStatus': forms.Select(attrs={'class': 'form-control'}, choices=[(True, 'True'), (False, 'False')])
+        }

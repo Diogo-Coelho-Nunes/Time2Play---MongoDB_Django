@@ -170,11 +170,10 @@ a{
 }
 
 .category-container{
-    display:flex;
+    display: flex;
     margin:auto;
     justify-content:center;
     align-items:center;
-    columns: 5;
     padding:20px;
     
 }

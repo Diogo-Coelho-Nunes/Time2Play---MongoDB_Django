@@ -18,7 +18,9 @@
                 </ul>
                 <br>
                 {% if k.ProductImage %}
-                <img src="/media/{{ k.ProductImage }}" width="500" height="250">
+                 <a href="AlterarStatusProduto/{{ k.ProductId }}/">
+                    <img src="/media/{{ k.ProductImage }}" width="500" height="250">
+                </a>
                 {% endif %}
             </p>
             {% endfor %}

@@ -1,6 +1,8 @@
 from Time2Playapp.models import *
 from django.contrib.auth.hashers import make_password,check_password
 from django.db import connections
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 #Registo
 def registo(nome, email, password, tipo, UserStatus):
@@ -54,4 +56,34 @@ def addPrdt(nome, descricao, preco,quantidade,imagem,tipo):
 def listPartnerPrdt():
     if Product.objects.filter(ProductUserId='Parceiro' or 'parceiro'):
         return Product.objects.filter(ProductUserId='Parceiro' or 'parceiro')
+
+
+#clientes~
+
+def listjogosPC():
+    if Product.objects.filter(ProductTypeId=1):
+        return Product.objects.filter(ProductTypeId=1)
+        
+def listjogosXbox():
+    if Product.objects.filter(ProductTypeId=2):
+        return Product.objects.filter(ProductTypeId=2)
+
+def listjogosPS():
+    if Product.objects.filter(ProductTypeId=3):
+        return Product.objects.filter(ProductTypeId=3)
+
+def listjogosNintendo():
+    if Product.objects.filter(ProductTypeId=4):
+        return Product.objects.filter(ProductTypeId=4)
+
+#função para adiciornar ao carrinho 
+def addtocarrinho(user_id,product_id):
+    
+    
+
+   
+
+
+
+
 

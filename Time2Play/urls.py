@@ -35,4 +35,11 @@ urlpatterns = [
     path('c1/partnerPrdt/AlterarStatusProduto/<int:ProductId>/', views.ChangePrdtStatus),
     path('c1/chart/', views.count_products),
 
+    path('cliente/', views.client),
+    path('cliente/filtros', views.categorias),
+    path('cliente/xbox', views.xbox_list),
+    path('cliente/pc', views.pc_list),
+    path('cliente/nintendo', views.nintendo_list),
+    path('cliente/playstation', views.playstation_list),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

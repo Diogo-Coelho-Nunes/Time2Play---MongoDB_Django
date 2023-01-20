@@ -6,7 +6,7 @@ from Time2Playapp.database import *
 from .forms import addPrdtForm, addSaleForm, removeSaleForm, changeStatusForm
 from django.shortcuts import get_object_or_404
 import pygal
-import highcharts
+
 
 
 
@@ -151,3 +151,38 @@ def count_products(request):
     bar_chart.add('Product', product_count)
     chart = bar_chart.render_data_uri()
     return render(request, 'C1_templates/count_products.html', {'chart': chart})
+
+
+#clients
+
+def client(request):
+    context = {}
+    return render(request, 'Clients_templates/Client_main_page.html', context = context)
+
+def categorias(request):
+    context = {}
+    return render(request, 'Clients_templates/Categorias.html', context = context)
+
+def playstation_list(request):
+    products = database.listjogosPS()
+    context = {'products': products}
+    return render(request,'Clients_templates/PlayStation_list.html',context=context)
+
+def xbox_list(request):
+    products = database.listjogosXbox()
+    context = {'products': products}
+    return render(request,'Clients_templates/Xbox_list.html',context=context)
+
+def pc_list(request):
+    products = database.listjogosPC()
+    context = {'products': products}
+    return render(request,'Clients_templates/PC_list.html',context=context)
+
+def nintendo_list(request):
+    products = database.listjogosNintendo()
+    context = {'products': products}
+    return 
+
+def addtocarrinho(request):
+     if request.method == 'POST':
+        

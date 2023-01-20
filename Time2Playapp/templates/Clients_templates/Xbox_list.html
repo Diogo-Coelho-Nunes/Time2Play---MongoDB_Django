@@ -27,21 +27,25 @@
         <!--navigation-->
         <nav class="navigation">
             <!--logo-->
-            <a class="logo">Time2Play - Your VideoGame Marketplace</a>
+            <a class="logo">Time2Play - Xbox Games </a>
+            
+            
+            </a>
 
             <!--menu-->
             <ul class="menu">
-                <li><a href="filtros" class="active">Explora-nos</a></li> <!--Abre uma página onde serão mostradas as plataformas-->
+                <li><a href="#filtros" class="active">Explora-nos</a></li> <!--Abre uma página onde serão mostradas as plataformas-->
             </ul>
+            
 
             <!--right-->
             <div class="right-elements">
                 <!--search-->
-                <a href="search" class="search">
+                <a href="#search" class="search">
                     <i class="fa fa-search"></i>
                 </a>
                 <!--cart-->
-                <a href="cart" class="cart">
+                <a href="#cart" class="cart">
                     <i class="fa fa-shopping-bag"></i>
                 </a>
 
@@ -52,11 +56,43 @@
             </div>
         </nav>
 
+        
         <!--main section-->
         <section id="main">
+            
             <!--main content section-->
             <div class="main-content">
-               
+                <body style="padding-top:150px;">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            
+                            <th scope="col">Nome</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Preço</th>
+                            <th scope="col">Quantidade</th>
+                            
+                          </tr>
+                        </thead>
+                        
+                        {% block content %}
+                        {% for k in products %}
+                        <tbody>
+                          <tr>
+                            <th scope="row">{{ k.ProductName }}</th>
+                            <td>{{ k.ProductDescription }}</td>
+                            <td>{{ k.ProductPrice }}</td>
+                            <td>{{ k.ProductQuantity }}</td>
+                            
+                            <td>
+                            <button type="button" class="btn btn-danger">Adicionar ao Carrinho</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                        {% endfor %}
+                      </table>
+                </body>
+                {% endblock %}
             </div>
         </section>
     </body>

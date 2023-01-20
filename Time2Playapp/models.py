@@ -8,7 +8,7 @@ class User(models.Model):
     UserName = models.CharField(max_length=100)
     UserEmail = models.EmailField(max_length=100)
     UserPassword = models.CharField(max_length=100)
-    UserType = models.CharField(max_length=100) #Admin, C1, C2, Parceiro, Cliente
+    UserType = models.CharField(max_length=100,default='Cliente') #Admin, C1, C2, Parceiro, Cliente
     UserStatus = models.BooleanField(default=False) #Ativo, Inativo, Bloqueado
 
 #ProductsType model

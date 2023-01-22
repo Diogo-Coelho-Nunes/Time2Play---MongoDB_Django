@@ -37,3 +37,20 @@ class addSaleForm(ModelForm):
             'ProductTypeId': forms.Select(attrs={'class': 'form-control'}, choices=ProductType.objects.all().values_list('ProductTypeId', 'ProductTypeName')),
             'Promotion': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+class adduserform(ModelForm):
+    class Meta:
+        model = User
+        fields = ('UserName', 'UserEmail', 'UserPassword', 'UserType')
+        labels = {
+            'UserName': 'Nome ',
+            'UserEmail': 'Email ',
+            'UserPassword': 'Password ',
+            'UserType': 'Tipo de Utilizador',
+        }
+        widgets = {
+            'UserName': forms.TextInput(attrs={'class': 'form-control'}),
+            'UserEmail': forms.EmailInput(attrs={'class': 'form-control'}),
+            'UserPassword': forms.PasswordInput(attrs={'class': 'form-control'}),
+            'UserType': forms.TextInput(attrs={'class': 'form-control'}),
+        }

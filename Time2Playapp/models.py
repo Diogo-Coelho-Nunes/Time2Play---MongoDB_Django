@@ -9,7 +9,7 @@ class User(models.Model):
     UserEmail = models.EmailField(max_length=100)
     UserPassword = models.CharField(max_length=100)
     UserType = models.CharField(max_length=100) #Admin, C1, C2, Parceiro, Cliente
-    UserStatus = models.BooleanField(default=False) #Ativo, Inativo, Bloqueado
+    UserStatus = models.CharField(max_length=100,default='False') #Ativo, Inativo, Bloqueado
 
 #ProductsType model
 class ProductType(models.Model):

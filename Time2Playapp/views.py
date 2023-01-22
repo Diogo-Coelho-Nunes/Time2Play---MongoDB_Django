@@ -3,9 +3,10 @@ from django.shortcuts import render, redirect
 from Time2Playapp import database
 from Time2Playapp.models import *
 from Time2Playapp.database import *
-from .forms import addPrdtForm, addSaleForm
+from .forms import addPrdtForm, addSaleForm , adduserform
+from django.contrib import messages
+from django.shortcuts import get_object_or_404
 
-# Create your views here.
 def MainPage(request):
     context = {}
     return render(request, 'MainPage.html', context = context)
@@ -18,15 +19,15 @@ def popularUser(request):
         password = request.POST.get('UserPassword')
         tipo = request.POST.get('UserType')
         if request.POST.get('UserType') == 'Parceiro' or request.POST.get('UserType') == 'parceiro':
-            UserStatus = False
+            UserStatus = 'False'
         elif request.POST.get('UserType') == 'Admin' or request.POST.get('UserType') == 'admin':
-            UserStatus = True
+            UserStatus = 'True'
         elif request.POST.get('UserType') == 'C1' or request.POST.get('UserType') == 'c1':
-            UserStatus = True
+            UserStatus = 'True'
         elif request.POST.get('UserType') == 'C2' or request.POST.get('UserType') == 'c2':
-            UserStatus = True
+            UserStatus = 'True'
         elif request.POST.get('UserType') == 'Cliente' or request.POST.get('UserType') == 'cliente':
-            UserStatus = True
+            UserStatus = 'True'
         resultado = database.registo(nome, email, password, tipo, UserStatus)
         if resultado :
             print('Registo efetuado com sucesso!')
@@ -98,3 +99,43 @@ def addSale(request):
         # Handle GET request
         form = addSaleForm()
     return render(request, 'C1_templates/InserirPromocao.html', {'form': form})
+
+def adm(request):
+    context = {}
+    return render(request, 'Adm_templates/MainPage.html', context = context)
+
+def aprpar(request):
+    if request.method == 'GET':
+        users = database.funcao2()
+        context = {'users': users}
+        return render(request, 'Adm_templates/AprovarUsers.html', context=context)
+
+def criarut(request):
+    if request.method == 'POST':
+        # Handle form submission
+        form = adduserform(request.POST)
+        if form.is_valid():
+            password = form.cleaned_data['UserPassword']
+            password_enc = make_password(password)
+            Users = User.objects.create(UserName=form.cleaned_data['UserName'],UserEmail=form.cleaned_data['UserEmail'],UserPassword=password_enc,UserType=form.cleaned_data['UserType'])
+            return redirect('/adm')
+    else:
+        # Handle GET request
+        form = adduserform()
+    return render(request, 'Adm_templates/CriarUtilizador.html', {'form': form})
+
+def gerirut(request):
+    if request.method == 'GET':
+        users = database.funcao()
+        context = {'users': users}
+        return render(request, 'Adm_templates/GerirUtilizadores.html', context=context)
+
+def deleteuser(request, id):
+  users = get_object_or_404(User,pk=id)
+  users.delete()
+  return redirect('/adm/gerirut')
+
+def deleteuserAP(request, id):
+    users = get_object_or_404(User,pk=id)
+    users.delete()
+    return redirect('/adm/aprpar')

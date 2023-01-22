@@ -27,6 +27,7 @@ SECRET_KEY = 'django-insecure-ac41e)1dg3bqsm_048^u8bl#t0bmrd@(ppzfd*bp22hvnk26!y
 DEBUG = True
 
 ALLOWED_HOSTS = []
+MESSAGE_STORAGE= "django.contrib.messages.storage.cookie.CookieStorage"
 
 
 # Application definition
@@ -135,7 +136,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+   
 )
 
 # Default primary key field type

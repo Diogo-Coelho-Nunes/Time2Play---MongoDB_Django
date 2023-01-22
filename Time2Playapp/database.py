@@ -50,3 +50,13 @@ def addPrdt(nome, descricao, preco,quantidade,imagem,tipo):
     
     registo = Product(ProductName=nome, ProductDescription=descricao, ProductPrice=preco, ProductQuantity=quantidade, ProductImage=imagem, ProductTypeId=tipo)
     registo.save()
+
+#Admin
+def funcao():
+    if User.objects.filter(UserStatus='True'):
+        return User.objects.filter(UserStatus='True')
+
+
+def funcao2():
+    if User.objects.filter(UserStatus='False'):
+        return User.objects.filter(UserStatus='False')

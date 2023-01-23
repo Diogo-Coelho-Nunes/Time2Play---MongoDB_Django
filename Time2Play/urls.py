@@ -39,5 +39,6 @@ urlpatterns = [
     path('adm/deleteuserAP/<int:id>/',views.deleteuserAP),
     path('adm/aprovaruser/<int:id>/',views.aprovaruser),
 
-    path('par/',views.par)
+    path('par/',views.par),
+    path('par/addPrdtParc/',views.addPrdtParc),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

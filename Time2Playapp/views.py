@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from Time2Playapp import database
 from Time2Playapp.models import *
 from Time2Playapp.database import *
-from .forms import addPrdtForm, addSaleForm , adduserform
+from .forms import *
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 
@@ -150,3 +150,15 @@ def aprovaruser(request,id):
 def par(request):
     context = {}
     return render(request, 'Parc_templates/MainPage.html', context = context)
+
+def addPrdtParc(request):
+    if request.method == 'POST':
+        # Handle form submission
+        form = addPrdtFormParc(request.POST,request.FILES)
+        if form.is_valid():
+            Users = Product.objects.create(ProductName=form.cleaned_data['ProductName'],ProductDescription=form.cleaned_data['ProductDescription'],ProductPrice=form.cleaned_data['ProductPrice'],ProductQuantity=form.cleaned_data['ProductQuantity'],ProductImage=form.cleaned_data['ProductImage'],ProductTypeId=form.cleaned_data['ProductTypeId'],ProductUserId='parceiro')
+            return redirect('/par')
+    else:
+        # Handle GET request
+        form = addPrdtFormParc()
+    return render(request, 'Parc_templates/CriarProdutos.html', {'form': form})

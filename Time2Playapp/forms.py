@@ -54,3 +54,26 @@ class adduserform(ModelForm):
             'UserPassword': forms.PasswordInput(attrs={'class': 'form-control'}),
             'UserType': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+class addPrdtFormParc(ModelForm):
+    class Meta:
+        model = Product
+        fields = ('ProductName', 'ProductDescription', 'ProductPrice', 'ProductQuantity', 'ProductImage', 'ProductTypeId')
+        labels = {
+            'ProductName': 'Nome do Produto',
+            'ProductDescription': 'Descrição do Produto',
+            'ProductPrice': 'Preço do Produto',
+            'ProductQuantity': 'Quantidade do Produto',
+            'ProductImage': 'Imagem do Produto',
+            'ProductTypeId': 'Tipo do Produto',
+            'ProductUserId': 'Vendedor',
+        }
+        widgets = {
+            'ProductName': forms.TextInput(attrs={'class': 'form-control'}),
+            'ProductDescription': forms.TextInput(attrs={'class': 'form-control'}),
+            'ProductPrice': forms.TextInput(attrs={'class': 'form-control'}),
+            'ProductQuantity': forms.TextInput(attrs={'class': 'form-control'}),
+            'ProductImage': '',
+            'ProductTypeId': forms.Select(attrs={'class': 'form-control'}, choices=ProductType.objects.all().values_list('ProductTypeId', 'ProductTypeName')),
+        }
+    

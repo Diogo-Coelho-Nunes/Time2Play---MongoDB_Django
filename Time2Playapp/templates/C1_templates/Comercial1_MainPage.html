@@ -13,16 +13,18 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <!-- Bootstrap4 files-->
+        <script src="/media/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        <link href="/media/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+
        
         {% load static %}
         <!--CSS-->
-        <link rel="stylesheet" href="{% static 'css\MainPage.css' %}"> 
-
-
-               
+        <link rel="stylesheet" href="{% static 'css\MainPage.css' %}">               
     </head>
 
-    <body>
+    <body style="overflow: hidden;">
         <!--navigation-->
         <nav class="navigation">
             <!--logo-->
@@ -42,49 +44,60 @@
             <!--main content section-->
             <div class="main-content">
                 <div class="category-container">
-            
-                    <a href="addPrdt" class="category-box">
-                        {% load static %}<img src="{% static 'images/add_color.png' %}"alt="category">
-                        <span>Adicionar Produtos</span>
-                    </a>
-
-                    <a href="listPrdt" class="category-box">
-                        {% load static %}<img src="{% static 'images/lista.png' %}"alt="category">
-                        <span>Listar Produtos</span>
-                    </a>
-        
-                    <a href="sales" class="category-box">
-                        {% load static %}<img src="{% static 'images/coupon.png' %}" alt="category">
-                        <span>Gerir Promoções</span>
-                    </a>
-                    <br>
-
-                    <a href="removeSales" class="category-box">
-                        {% load static %}<img src="{% static 'images/price.png' %}" alt="category">
-                        <span>Remover Promoções</span>
-                    </a>
-
-                    <a href="partnerPrdt" class="category-box">
-                        {% load static %}<img src="{% static 'images/partnership.png' %}" alt="category">
-                        <span>Produtos Parceiros</span>
-                    </a>
-
-                    <a href="chart" class="category-box">
-                        {% load static %}<img src="{% static 'images/bar-graph.png' %}" alt="category">
-                        <span>Análise de Produtos</span>
-                    </a>
-
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-3">
+                                <a href="addPrdt" class="category-box">
+                                    {% load static %}<img src="{% static 'images/add_color.png' %}"alt="category">
+                                    <span>Adicionar Produtos</span>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a href="listPrdt" class="category-box">
+                                    {% load static %}<img src="{% static 'images/lista.png' %}"alt="category">
+                                    <span>Listar Produtos</span>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a href="sales" class="category-box">
+                                    {% load static %}<img src="{% static 'images/coupon.png' %}" alt="category">
+                                    <span>Gerir Promoções</span>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a href="removeSales" class="category-box">
+                                    {% load static %}<img src="{% static 'images/price.png' %}" alt="category">
+                                    <span>Remover Promoções</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <a href="partnerPrdt" class="category-box">
+                                    {% load static %}<img src="{% static 'images/partnership.png' %}" alt="category">
+                                    <span>Produtos Parceiros</span>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a href="chart" class="category-box">
+                                    {% load static %}<img src="{% static 'images/bar-graph.png' %}" alt="category">
+                                    <span>Análise de Produtos</span>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a href="listclient" class="category-box">
+                                    {% load static %}<img src="{% static 'images/customer.png' %}" alt="category">
+                                    <span>Listar Clientes</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>           
             </div>
         </section>
     </body>
     <!--main--section-end-->
-
-    <!--sugested-->
-    <section id="categories">
-       
-    </section>
-    
+  
     
     <!--end-sugested-->
     <!--footer-->

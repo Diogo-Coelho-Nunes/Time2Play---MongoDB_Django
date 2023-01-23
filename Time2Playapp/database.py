@@ -1,6 +1,7 @@
 from Time2Playapp.models import *
 from django.contrib.auth.hashers import make_password,check_password
 from django.db import connections
+from django.db.models import Q
 
 #Registo
 def registo(nome, email, password, tipo, UserStatus):
@@ -52,6 +53,9 @@ def addPrdt(nome, descricao, preco,quantidade,imagem,tipo):
     registo.save()
 
 def listPartnerPrdt():
-    if Product.objects.filter(ProductUserId='Parceiro' or 'parceiro'):
-        return Product.objects.filter(ProductUserId='Parceiro' or 'parceiro')
+    if Product.objects.filter(Q(ProductUserId='Parceiro') | Q(ProductUserId='parceiro')):
+        return Product.objects.filter(Q(ProductUserId='Parceiro') | Q(ProductUserId='parceiro'))
 
+def list_client():
+    if User.objects.filter(Q(UserType='Cliente') | Q(UserType='cliente') | Q(UserType='Parceiro') | Q(UserType='parceiro')):
+        return User.objects.filter(Q(UserType='Cliente') | Q(UserType='cliente') | Q(UserType='Parceiro') | Q(UserType='parceiro'))

@@ -29,10 +29,12 @@ urlpatterns = [
     path('c1/', views.c1),
     path('c1/addPrdt/', views.addPrdt),
     path('c1/listPrdt/', views.listPrdt),
+    path('c1/listPrdt/deleteprdt/<int:ProductId>/', views.deletePrdt),
     path('c1/sales/', views.addSale),
     path('c1/removeSales/', views.removeSale),
     path('c1/partnerPrdt/', views.listPartnerPrdt),
-    path('c1/partnerPrdt/AlterarStatusProduto/<int:ProductId>/', views.ChangePrdtStatus),
+    path('c1/listPrdt/partnerPrdt/AlterarStatusProduto/<int:ProductId>/', views.ChangePrdtStatus),
     path('c1/chart/', views.count_products),
+    path('c1/listclient/', views.list_cliente),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

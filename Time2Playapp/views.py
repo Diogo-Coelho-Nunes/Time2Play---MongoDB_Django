@@ -6,13 +6,13 @@ from Time2Playapp.database import *
 from .forms import addPrdtForm, addSaleForm, removeSaleForm, changeStatusForm
 from django.shortcuts import get_object_or_404
 import pygal
-import highcharts
-
 
 
 # Create your views here.
 def MainPage(request):
-    context = {}
+    if request.method == 'GET':
+        products = Product.objects.order_by('ProductPrice')[:6]
+        context = {'products': products}
     return render(request, 'MainPage.html', context = context)
 
 #Create Users
@@ -151,3 +151,16 @@ def count_products(request):
     bar_chart.add('Product', product_count)
     chart = bar_chart.render_data_uri()
     return render(request, 'C1_templates/count_products.html', {'chart': chart})
+
+def list_cliente(request):
+    if request.method == 'GET':
+        clients = database.list_client()
+        context = {'clients': clients}
+        return render(request, 'C1_templates/ListarClientes.html', context=context)
+
+def deletePrdt(request,ProductId):
+    prdt = get_object_or_404(Product, pk=ProductId)
+    print(prdt)
+    prdt.delete()    
+    return redirect('/c1/listPrdt')
+

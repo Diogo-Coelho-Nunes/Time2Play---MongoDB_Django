@@ -139,3 +139,14 @@ def deleteuserAP(request, id):
     users = get_object_or_404(User,pk=id)
     users.delete()
     return redirect('/adm/aprpar')
+
+def aprovaruser(request,id):
+    users = get_object_or_404(User,pk=id)
+    print(users.UserStatus)
+    users.UserStatus = "True"
+    users.save()
+    return redirect('/adm/aprpar')
+
+def par(request):
+    context = {}
+    return render(request, 'Parc_templates/MainPage.html', context = context)

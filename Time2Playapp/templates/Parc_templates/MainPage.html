@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Time2Play</title>
+
+        <!--icon-->
+        {% load static %} <link rel="shortcut icon" href="{% static 'images/icon.png' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!--import-fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       
+        {% load static %}
+        <!--CSS-->
+        <link rel="stylesheet" href="{% static 'css\MainPage.css' %}"> 
+
+
+               
+    </head>
+
+    <body>
+        <!--navigation-->
+        <nav class="navigation">
+            <!--logo-->
+            <h1>Time2Play - Your VideoGame Marketplace -> Parceiro</h1>
+
+            <!--right-->
+            <div class="right-elements">
+                <!--login-->
+                <a href="/" class="login">
+                    <i class="fa fa-power-off"></i>
+                </a>
+            </div>
+        </nav>
+
+        <!--main section-->
+        <section id="main">
+            <!--main content section-->
+            <div class="main-content" style="padding-top: 100px;">
+                <div class="category-container">
+            
+                    <a href="criarut" class="category-box">
+                        {% load static %}<img src="{% static 'images/add_color.png' %}"alt="category">
+                        <span>Adicionar</span>
+                    </a>
+        
+                    <a href="gerirut" class="category-box">
+                        {% load static %}<img src="{% static 'images/wrench.png' %}" alt="category">
+                        <span>Listar Produtos</span>
+                    </a>
+                </div>
+               
+            </div>
+        </section>
+    </body>
+    <!--main--section-end-->
+
+    <!--sugested-->
+    <section id="categories">
+       
+    </section>
+    
+    
+    <!--end-sugested-->
+    <center>
+    <!--footer-->
+    <footer style="padding-bottom:20px;">
+        <div class="footer-content">
+            <h3>Time2Play</h3>
+            <p>Time2Play é uma plataforma de compra e venda de videojogos. Aqui poderá encontrar os melhores jogos para a sua plataforma favorita.</p>
+            <ul id="ulfooter">
+                <li id="lifooter"><i class="fa fa-facebook"></i></a></li>
+                <li id="lifooter"><i class="fa fa-twitter"></i></a></li>
+                <li id="lifooter"><i class="fa fa-instagram"></i></a></li>
+                <li id="lifooter"><i class="fa fa-youtube"></i></a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+           Time2Play | Designed by Time2Play @ ESTGV - BD_II
+        </div>
+    </footer>
+</center>
+    <!--footer-end-->
+</html>

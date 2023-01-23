@@ -33,6 +33,20 @@
                 }
             })
         }
+
+        function aprovaruser(id){
+            Swal.fire({
+                "title": "Queres aprovar o utilizador?",
+                "text": "O utilizador poderá efetuar login",
+                "icon": "question",
+                "showCancelButton": true
+            })
+            .then(function(result){
+                if(result.isConfirmed){
+                    window.location.href = "aprovaruser/"+id+"/"
+                }
+            })
+        }
         </script>
         {% endblock %}
     </head>
@@ -75,7 +89,7 @@
                     <td>{{ k.UserType }}</td>
                     <td>{{ k.UserStatus }}</td>
                     <td>
-                    <button type="button" class="btn btn-primary">Aprovar</button>
+                    <button type="button" class="btn btn-primary" onclick="aprovaruser('{{ k.UserId }}' )">Aprovar</button>
                     <button type="button" class="btn btn-danger" onclick="deleteuser('{{ k.UserId }}' )">Apagar</button>
                     </td>
                   </tr>

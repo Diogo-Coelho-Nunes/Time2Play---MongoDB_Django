@@ -37,4 +37,7 @@ urlpatterns = [
     path('adm/gerirut',views.gerirut),
     path('adm/deleteuser/<int:id>/',views.deleteuser),
     path('adm/deleteuserAP/<int:id>/',views.deleteuserAP),
+    path('adm/aprovaruser/<int:id>/',views.aprovaruser),
+
+    path('par/',views.par)
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

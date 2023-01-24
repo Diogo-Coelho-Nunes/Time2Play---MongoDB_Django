@@ -60,3 +60,8 @@ def funcao():
 def funcao2():
     if User.objects.filter(UserStatus='False'):
         return User.objects.filter(UserStatus='False')
+
+
+def funcao3():
+    if Product.objects.filter(ProductUserId='parceiro'):
+        return Product.objects.filter(ProductUserId='parceiro')

@@ -25,10 +25,12 @@
                 "title": "Queres apagar o utilizador?",
                 "text": "Não podes recuperar esta ação",
                 "icon": "question",
-                "showCancelButton": true
+                "confirmButtonText": 'Apagar',
+                "showCancelButton": true,
             })
             .then(function(result){
                 if(result.isConfirmed){
+                    Swal.fire('Apagado!','O utilizador foi apagado com sucesso','success')
                     window.location.href = "deleteuserAP/"+id+"/"
                 }
             })
@@ -38,11 +40,13 @@
             Swal.fire({
                 "title": "Queres aprovar o utilizador?",
                 "text": "O utilizador poderá efetuar login",
+                "confirmButtonText": 'Aprovar',
                 "icon": "question",
-                "showCancelButton": true
+                "showCancelButton": true,
             })
             .then(function(result){
                 if(result.isConfirmed){
+                    Swal.fire('Aprovado!','O utilizador foi aprovado com sucesso','success')
                     window.location.href = "aprovaruser/"+id+"/"
                 }
             })

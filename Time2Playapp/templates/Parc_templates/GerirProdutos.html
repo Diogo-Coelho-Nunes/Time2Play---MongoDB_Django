@@ -20,9 +20,9 @@
        
         {% block js %}
         <script>
-        function deleteuser(id){
+        function deleteprod(id){
             Swal.fire({
-                "title": "Queres apagar o utilizador?",
+                "title": "Queres apagar o produto?",
                 "text": "Não podes recuperar esta ação",
                 "icon": "question",
                 "confirmButtonText": 'Apagar',
@@ -30,9 +30,9 @@
             })
             .then(function(result){
                 if(result.isConfirmed){
-                    Swal.fire('Apagado!','O utilizador foi apagado com sucesso','success')
-                    window.location.href = "deleteuser/"+id+"/"
-                }
+                    Swal.fire('Apagado!','O produto foi apagado com sucesso','success')
+                    window.location.href = "deleteprdParc/"+id+"/"
+                } 
             })
         }
         </script>
@@ -43,7 +43,7 @@
         <!--navigation-->
         <nav class="navigation">
             <!--logo-->
-            <h1>Gestão de funcionários</h1>
+            <h1>Gestão de Produtos</h1>
 
             <!--right-->
             <div class="right-elements">
@@ -61,23 +61,25 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Quantidade</th>
                     <th scope="col">Tipo</th>
-                    <th scope="col">Status</th>
                     <th scope="col">Ações</th>
                   </tr>
                 </thead>
                 {% block content %}
-                {% for k in users %}
+                {% for k in products %}
                 <tbody>
                   <tr>
-                    <th scope="row">{{ k.UserId }}</th>
-                    <td>{{ k.UserName }}</td>
-                    <td>{{ k.UserEmail }}</td>
-                    <td>{{ k.UserType }}</td>
-                    <td>{{ k.UserStatus }}</td>
+                    <th scope="row">{{ k.ProductId }}</th>
+                    <td>{{ k.ProductName }}</td>
+                    <td>{{ k.ProductDescription }}</td>
+                    <td>{{ k.ProductPrice }}</td>
+                    <td>{{ k.ProductQuantity }}</td>
+                    <td>{{ k.ProductTypeId }}</td>
                     <td>
-                    <button type="button" class="btn btn-danger" onclick="deleteuser('{{ k.UserId }}' )">Apagar</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteprod('{{ k.ProductId }}' )">Apagar</button>
                     </td>
                   </tr>
                 </tbody>

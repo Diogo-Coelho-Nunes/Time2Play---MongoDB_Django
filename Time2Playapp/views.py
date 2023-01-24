@@ -162,3 +162,14 @@ def addPrdtParc(request):
         # Handle GET request
         form = addPrdtFormParc()
     return render(request, 'Parc_templates/CriarProdutos.html', {'form': form})
+
+def gerirParc(request):
+    if request.method == 'GET':
+        products = database.funcao3()
+        context = {'products': products}
+        return render(request, 'Parc_templates/GerirProdutos.html', context=context)
+
+def deleteprdParc(request, id):
+    prod = get_object_or_404(Product,pk=id)
+    prod.delete()
+    return redirect('/par/gerirParc')

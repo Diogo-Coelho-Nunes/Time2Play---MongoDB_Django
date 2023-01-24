@@ -173,3 +173,13 @@ def deleteprdParc(request, id):
     prod = get_object_or_404(Product,pk=id)
     prod.delete()
     return redirect('/par/gerirParc')
+
+def editarproc(request, id):
+    Prod = Product.objects.get(pk=id)
+    form = editPrdtFormParc(request.POST or None,instance=Prod)
+    if form.is_valid():
+        form.save()
+        return redirect('/par/gerirParc/')
+    
+    return render(request, 'Parc_templates/EditarProdutos.html', {'form': form})
+    

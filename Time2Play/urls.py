@@ -43,5 +43,6 @@ urlpatterns = [
     path('par/addPrdtParc/',views.addPrdtParc),
     path('par/gerirParc/',views.gerirParc),
     path('par/gerirParc/deleteprdParc/<int:id>/',views.deleteprdParc),
+    path('par/editarprod/<int:id>/',views.editarproc),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -78,7 +78,10 @@
                     <td>{{ k.ProductPrice }}</td>
                     <td>{{ k.ProductQuantity }}</td>
                     <td>{{ k.ProductTypeId }}</td>
-                    <td>
+                    <td> 
+                    <button type="button" class="btn btn-primary">
+                        <a href="/par/editarprod/{{ k.ProductId }}" style="color: white;">Editar</a>
+                    </button>
                     <button type="button" class="btn btn-danger" onclick="deleteprod('{{ k.ProductId }}' )">Apagar</button>
                     </td>
                   </tr>

@@ -193,6 +193,6 @@ def listxml(request):
     products =  Product.objects.filter(Q(ProductUserId='parceiro')&Q(ProductQuantity__lte=10))
     lines = []
     for prod in products:
-        lines.append(f'<?xml version="1.0" encoding="UTF-8"?>\n<Product>\n \t<Product ID="{prod.ProductId} Name="{prod.ProductName} Quantity="{prod.ProductQuantity}"/>\n</Product>\n' )
+        lines.append(f'<?xml version="1.0" encoding="UTF-8"?>\n<Product>\n \t<Product ID="{prod.ProductId} Name="{prod.ProductName} Quantity="20"/>\n</Product>\n' )
     response.writelines(lines)
     return response

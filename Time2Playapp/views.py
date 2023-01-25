@@ -6,6 +6,10 @@ from Time2Playapp.database import *
 from .forms import *
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
+from django.core import serializers 
+from django.http import HttpResponse
+from django.db.models import Q
+
 
 def MainPage(request):
     context = {}
@@ -182,4 +186,13 @@ def editarproc(request, id):
         return redirect('/par/gerirParc/')
     
     return render(request, 'Parc_templates/EditarProdutos.html', {'form': form})
-    
+
+def listxml(request):
+    response = HttpResponse(content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename=novosprod.xml'
+    products =  Product.objects.filter(Q(ProductUserId='parceiro')&Q(ProductQuantity__lte=10))
+    lines = []
+    for prod in products:
+        lines.append(f'<?xml version="1.0" encoding="UTF-8"?>\n<Product>\n \t<Product ID="{prod.ProductId} Name="{prod.ProductName} Quantity="{prod.ProductQuantity}"/>\n</Product>\n' )
+    response.writelines(lines)
+    return response

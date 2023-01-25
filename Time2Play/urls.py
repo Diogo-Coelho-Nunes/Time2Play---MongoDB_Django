@@ -38,11 +38,12 @@ urlpatterns = [
     path('adm/deleteuser/<int:id>/',views.deleteuser),
     path('adm/deleteuserAP/<int:id>/',views.deleteuserAP),
     path('adm/aprovaruser/<int:id>/',views.aprovaruser),
+    path('adm/pedirproc',views.listxml),
+
 
     path('par/',views.par),
     path('par/addPrdtParc/',views.addPrdtParc),
     path('par/gerirParc/',views.gerirParc),
     path('par/gerirParc/deleteprdParc/<int:id>/',views.deleteprdParc),
     path('par/editarprod/<int:id>/',views.editarproc),
-
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

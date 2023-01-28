@@ -41,5 +41,6 @@ urlpatterns = [
     path('cliente/pc', views.pc_list),
     path('cliente/nintendo', views.nintendo_list),
     path('cliente/playstation', views.playstation_list),
+    path('cliente/perfil', views.perfil),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

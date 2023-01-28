@@ -46,18 +46,30 @@
                 </a>
 
                 <!--login-->
-                <a href="perfil" class="login">
+                <a href="perfil.html" class="login">
                     <i class="fa fa-user"></i>
                 </a>
             </div>
         </nav>
-
+        
         <!--main section-->
         <section id="main">
+            
             <!--main content section-->
             <div class="main-content">
-
                 
+    
+                <ul class="navbar-nav">
+                    <h3>Atualizar Perfil</h3>
+                    <br>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <br>
+                        <input type="submit" value="Editar">
+                       
+                    </form>
+                </ul>
                
             </div>
         </section>

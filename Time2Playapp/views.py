@@ -3,10 +3,12 @@ from django.shortcuts import render, redirect
 from Time2Playapp import database
 from Time2Playapp.models import *
 from Time2Playapp.database import *
-from .forms import addPrdtForm, addSaleForm, removeSaleForm, changeStatusForm
+from .forms import *
 from django.shortcuts import get_object_or_404
 import pygal
 
+
+#import highcharts
 
 
 
@@ -60,9 +62,11 @@ def login(request):
         elif resultado == 'C2':
             print('Login efetuado com sucesso!')
             return redirect('/c2')
-        elif resultado == 'Cliente':
-           print('Login efetuado com sucesso!')
-           return redirect('/cliente')
+        elif resultado == resultado:
+            request.session['id'] = resultado
+            print(request.session['id'])
+            print('Login efetuado com sucesso!')
+            return redirect('/cliente')
     context = {}
     return render(request, 'login.html', context = context)
 
@@ -152,9 +156,6 @@ def count_products(request):
     chart = bar_chart.render_data_uri()
     return render(request, 'C1_templates/count_products.html', {'chart': chart})
 
-
-#clients
-
 def client(request):
     context = {}
     return render(request, 'Clients_templates/Client_main_page.html', context = context)
@@ -181,8 +182,18 @@ def pc_list(request):
 def nintendo_list(request):
     products = database.listjogosNintendo()
     context = {'products': products}
-    return 
+    return render(request,'Clients_templates/Nintendo_list.html',context=context)
 
-def addtocarrinho(request):
-     if request.method == 'POST':
-        
+def perfil(request):
+    userid = request.session.get('id')
+    user = User.objects.get(pk = userid)
+    form = changeperfil(request.POST or None,instance=user)
+    if form.is_valid():
+        password = form.cleaned_data['UserPassword']
+        password_enc = make_password(password)
+        Users = User.objects.filter(UserId = userid).update(UserName=form.cleaned_data['UserName'],UserEmail=form.cleaned_data['UserEmail'],UserPassword=password_enc)
+            
+        return redirect('/cliente')
+    
+    return render(request, 'Clients_templates/perfil.html', {'form': form})
+

@@ -36,5 +36,6 @@ urlpatterns = [
     path('c1/listPrdt/partnerPrdt/AlterarStatusProduto/<int:ProductId>/', views.ChangePrdtStatus),
     path('c1/chart/', views.count_products),
     path('c1/listclient/', views.list_cliente),
+    path('c1/listorders/', views.list_orders),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

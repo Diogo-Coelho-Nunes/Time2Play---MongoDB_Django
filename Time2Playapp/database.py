@@ -59,3 +59,11 @@ def listPartnerPrdt():
 def list_client():
     if User.objects.filter(Q(UserType='Cliente') | Q(UserType='cliente') | Q(UserType='Parceiro') | Q(UserType='parceiro')):
         return User.objects.filter(Q(UserType='Cliente') | Q(UserType='cliente') | Q(UserType='Parceiro') | Q(UserType='parceiro'))
+
+def list_orders():
+    postgres = connections['second'].cursor()
+    #postgres.execute("SELECT * FROM orders")
+    postgres.execute("SELECT * FROM orders")
+    orders = postgres.fetchall()
+    postgres.close()
+    return orders

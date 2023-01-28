@@ -160,7 +160,11 @@ def list_cliente(request):
 
 def deletePrdt(request,ProductId):
     prdt = get_object_or_404(Product, pk=ProductId)
-    print(prdt)
     prdt.delete()    
     return redirect('/c1/listPrdt')
 
+def list_orders(request):
+    if request.method == 'GET':
+        orders = database.list_orders()
+        context = context = {'orders': orders}
+        return render(request, 'C1_templates/ListarEncomendas.html', context=context)

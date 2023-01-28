@@ -3,9 +3,12 @@ from django.shortcuts import render, redirect
 from Time2Playapp import database
 from Time2Playapp.models import *
 from Time2Playapp.database import *
-from .forms import addPrdtForm, addSaleForm, removeSaleForm, changeStatusForm
+from .forms import *
 from django.shortcuts import get_object_or_404
 import pygal
+from django.core import serializers 
+from django.http import HttpResponse
+from django.db.models import Q
 
 
 # Create your views here.
@@ -168,3 +171,103 @@ def list_orders(request):
         orders = database.list_orders()
         context = context = {'orders': orders}
         return render(request, 'C1_templates/ListarEncomendas.html', context=context)
+
+#Adm + Parceiro
+def adm(request):
+    context = {}
+    return render(request, 'Adm_templates/MainPage.html', context = context)
+
+def aprpar(request):
+    if request.method == 'GET':
+        users = database.funcao2()
+        context = {'users': users}
+        return render(request, 'Adm_templates/AprovarUsers.html', context=context)
+
+def criarut(request):
+    if request.method == 'POST':
+        # Handle form submission
+        form = adduserform(request.POST)
+        if form.is_valid():
+            password = form.cleaned_data['UserPassword']
+            password_enc = make_password(password)
+            Users = User.objects.create(UserName=form.cleaned_data['UserName'],UserEmail=form.cleaned_data['UserEmail'],UserPassword=password_enc,UserType=form.cleaned_data['UserType'])
+            return redirect('/adm')
+    else:
+        # Handle GET request
+        form = adduserform()
+    return render(request, 'Adm_templates/CriarUtilizador.html', {'form': form})
+
+def gerirut(request):
+    if request.method == 'GET':
+        users = database.funcao()
+        context = {'users': users}
+        return render(request, 'Adm_templates/GerirUtilizadores.html', context=context)
+
+def deleteuser(request, id):
+  users = get_object_or_404(User,pk=id)
+  users.delete()
+  return redirect('/adm/gerirut')
+
+def deleteuserAP(request, id):
+    users = get_object_or_404(User,pk=id)
+    users.delete()
+    return redirect('/adm/aprpar')
+
+def aprovaruser(request,id):
+    users = get_object_or_404(User,pk=id)
+    print(users.UserStatus)
+    users.UserStatus = "True"
+    users.save()
+    return redirect('/adm/aprpar')
+
+def par(request):
+    context = {}
+    return render(request, 'Parc_templates/MainPage.html', context = context)
+
+def addPrdtParc(request):
+    if request.method == 'POST':
+        # Handle form submission
+        form = addPrdtFormParc(request.POST,request.FILES)
+        if form.is_valid():
+            Users = Product.objects.create(ProductName=form.cleaned_data['ProductName'],ProductDescription=form.cleaned_data['ProductDescription'],ProductPrice=form.cleaned_data['ProductPrice'],ProductQuantity=form.cleaned_data['ProductQuantity'],ProductImage=form.cleaned_data['ProductImage'],ProductTypeId=form.cleaned_data['ProductTypeId'],ProductUserId='parceiro')
+            return redirect('/par')
+    else:
+        # Handle GET request
+        form = addPrdtFormParc()
+    return render(request, 'Parc_templates/CriarProdutos.html', {'form': form})
+
+def gerirParc(request):
+    if request.method == 'GET':
+        products = database.funcao3()
+        context = {'products': products}
+        return render(request, 'Parc_templates/GerirProdutos.html', context=context)
+
+def deleteprdParc(request, id):
+    prod = get_object_or_404(Product,pk=id)
+    prod.delete()
+    return redirect('/par/gerirParc')
+
+def editarproc(request, id):
+    Prod = Product.objects.get(pk=id)
+    form = editPrdtFormParc(request.POST or None,instance=Prod)
+    if form.is_valid():
+        form.save()
+        return redirect('/par/gerirParc/')
+    
+    return render(request, 'Parc_templates/EditarProdutos.html', {'form': form})
+
+def listxml(request):
+    response = HttpResponse(content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename=novosprod.xml'
+    products =  Product.objects.filter(Q(ProductUserId='parceiro')&Q(ProductQuantity__lte=10))
+    lines = []
+    for prod in products:
+        lines.append(f'<Product>\n\t<ID="{prod.ProductId}>\n\t<Name="{prod.ProductName}">\n\t<Quantity="20"/>\n</Product>\n' )
+    response.writelines(lines)
+    return response
+
+def listpedirproc(request):
+    if request.method == 'GET':
+        products = database.funcao4()
+        context = {'products': products}
+        return render(request, 'Adm_templates/PedirProdList.html', context=context)

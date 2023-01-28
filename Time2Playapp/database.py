@@ -15,7 +15,7 @@ def registo(nome, email, password, tipo, UserStatus):
 def login(email, password):
     if User.objects.filter(UserEmail=email):
         user = User.objects.get(UserEmail=email)
-        if check_password(password, user.UserPassword) and user.UserType == 'Parceiro' or user.UserType == 'parceiro' and user.UserStatus == True:
+        if check_password(password, user.UserPassword) and user.UserType == 'Parceiro' or user.UserType == 'parceiro' and user.UserStatus == "True":
             print('dados corretos')
             return 'Parceiro'
         elif check_password(password, user.UserPassword) and user.UserType == 'Admin' or user.UserType == 'admin':
@@ -67,3 +67,22 @@ def list_orders():
     orders = postgres.fetchall()
     postgres.close()
     return orders
+
+#Admin + Parceiro
+def funcao():
+    if User.objects.filter(UserStatus='True'):
+        return User.objects.filter(UserStatus='True')
+
+
+def funcao2():
+    if User.objects.filter(UserStatus='False'):
+        return User.objects.filter(UserStatus='False')
+
+
+def funcao3():
+    if Product.objects.filter(ProductUserId='parceiro'):
+        return Product.objects.filter(ProductUserId='parceiro')
+
+def funcao4():
+    if Product.objects.filter(Q(ProductUserId='parceiro')&Q(ProductQuantity__lte=10)):
+        return Product.objects.filter(Q(ProductUserId='parceiro')&Q(ProductQuantity__lte=10))

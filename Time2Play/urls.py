@@ -38,4 +38,20 @@ urlpatterns = [
     path('c1/listclient/', views.list_cliente),
     path('c1/listorders/', views.list_orders),
 
+    path('adm/',views.adm),
+    path('adm/aprpar',views.aprpar),
+    path('adm/criarut',views.criarut),
+    path('adm/gerirut',views.gerirut),
+    path('adm/deleteuser/<int:id>/',views.deleteuser),
+    path('adm/deleteuserAP/<int:id>/',views.deleteuserAP),
+    path('adm/aprovaruser/<int:id>/',views.aprovaruser),
+    path('adm/pedirproc',views.listxml),
+    path('adm/pedirproclist',views.listpedirproc),
+
+    path('par/',views.par),
+    path('par/addPrdtParc/',views.addPrdtParc),
+    path('par/gerirParc/',views.gerirParc),
+    path('par/gerirParc/deleteprdParc/<int:id>/',views.deleteprdParc),
+    path('par/editarprod/<int:id>/',views.editarproc),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

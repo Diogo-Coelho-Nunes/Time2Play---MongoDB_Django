@@ -190,8 +190,6 @@ def editarproc(request, id):
 def listxml(request):
     response = HttpResponse(content_type='text/plain')
     response['Content-Disposition'] = 'attachment; filename=novosprod.xml'
-    quant = request.POST.get('quant')
-    print(quant)
     products =  Product.objects.filter(Q(ProductUserId='parceiro')&Q(ProductQuantity__lte=10))
     lines = []
     for prod in products:
@@ -201,10 +199,6 @@ def listxml(request):
 
 def listpedirproc(request):
     if request.method == 'GET':
-        form = newprod(request.POST)
-        if form.is_valid():
-            quant = form.cleaned_data['ProductQuantity']
-            print(quant)
         products = database.funcao4()
         context = {'products': products}
         return render(request, 'Adm_templates/PedirProdList.html', context=context)

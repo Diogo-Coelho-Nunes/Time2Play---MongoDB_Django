@@ -18,32 +18,13 @@
         <!--CSS-->
         <link rel="stylesheet" href="{% static 'css\MainAdmin.css' %}"> 
        
-        {% block js %}
-        <script>
-        function deleteprod(id){
-            Swal.fire({
-                "title": "Queres apagar o produto?",
-                "text": "Não podes recuperar esta ação",
-                "icon": "question",
-                "confirmButtonText": 'Apagar',
-                "showCancelButton": true,
-            })
-            .then(function(result){
-                if(result.isConfirmed){
-                    Swal.fire('Apagado!','O produto foi apagado com sucesso','success')
-                    window.location.href = "deleteprdParc/"+id+"/"
-                } 
-            })
-        }
-        </script>
-        {% endblock %}
     </head>
 
      
         <!--navigation-->
         <nav class="navigation">
             <!--logo-->
-            <h1>Gestão de Produtos</h1>
+            <h1>Pedir Produtos</h1>
 
             <!--right-->
             <div class="right-elements">
@@ -62,10 +43,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Descrição</th>
-                    <th scope="col">Preço</th>
                     <th scope="col">Quantidade</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Ações</th>
                   </tr>
                 </thead>
                 {% block content %}
@@ -75,21 +53,16 @@
                     <th scope="row">{{ k.ProductId }}</th>
                     <td>{{ k.ProductName }}</td>
                     <td>{{ k.ProductDescription }}</td>
-                    <td>{{ k.ProductPrice }}€</td>
                     <td>{{ k.ProductQuantity }}</td>
-                    <td>{{ k.ProductTypeId }}</td>
-                    <td> 
-                    <button type="button" class="btn btn-primary">
-                        <a href="/par/editarprod/{{ k.ProductId }}" style="color: white;">Editar</a>
-                    </button>
-                    <button type="button" class="btn btn-danger" onclick="deleteprod('{{ k.ProductId }}' )">Apagar</button>
-                    </td>
                   </tr>
                 </tbody>
                 {% endfor %}
               </table>
         </body>
         {% endblock %}
+        <button type="button" class="btn btn-primary" style="display: flex;float: right; margin-right: 30px;">
+            <a href="pedirproc" style="color: white;">Gerar Ficheiro</a>
+        </button>
     
 
     <center>

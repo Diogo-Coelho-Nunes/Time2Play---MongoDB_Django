@@ -97,3 +97,14 @@ class editPrdtFormParc(ModelForm):
             'ProductPrice': forms.TextInput(attrs={'class': 'form-control'}),
             'ProductQuantity': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+class newprod(ModelForm):
+    class Meta:
+        model = Product
+        fields = ['ProductQuantity']
+        labels = {
+            'ProductQuantity': 'Quantidade do Produto' 
+        }
+        widgets = {
+            'ProductQuantity': forms.TextInput(attrs={'class': 'form-control'}),
+        }

@@ -1,6 +1,7 @@
 from Time2Playapp.models import *
 from django.contrib.auth.hashers import make_password,check_password
 from django.db import connections
+from django.db.models import Q
 
 #Registo
 def registo(nome, email, password, tipo, UserStatus):
@@ -65,3 +66,7 @@ def funcao2():
 def funcao3():
     if Product.objects.filter(ProductUserId='parceiro'):
         return Product.objects.filter(ProductUserId='parceiro')
+
+def funcao4():
+    if Product.objects.filter(Q(ProductUserId='parceiro')&Q(ProductQuantity__lte=10)):
+        return Product.objects.filter(Q(ProductUserId='parceiro')&Q(ProductQuantity__lte=10))

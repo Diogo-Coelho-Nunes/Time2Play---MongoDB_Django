@@ -39,7 +39,7 @@ urlpatterns = [
     path('adm/deleteuserAP/<int:id>/',views.deleteuserAP),
     path('adm/aprovaruser/<int:id>/',views.aprovaruser),
     path('adm/pedirproc',views.listxml),
-
+    path('adm/pedirproclist',views.listpedirproc),
 
     path('par/',views.par),
     path('par/addPrdtParc/',views.addPrdtParc),

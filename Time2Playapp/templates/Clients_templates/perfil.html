@@ -13,7 +13,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
-       
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         {% load static %}
         <!--CSS-->
         <link rel="stylesheet" href="{% static 'css\MainPage.css' %}"> 
@@ -46,57 +46,39 @@
                 </a>
 
                 <!--login-->
-                <a href="login/" class="login">
+                <a href="perfil.html" class="login">
                     <i class="fa fa-user"></i>
                 </a>
             </div>
         </nav>
-
-<<<<<<< Updated upstream
-        <!--main section-->
-        <section id="main">
-            <!--main content section-->
-            <div class="main-content">
-               
-=======
-            <div class="main-content" style="z-index: 20; padding-top: 15px;" >
-                <!--main section-->
-                    <div class="container">
-                        <div class="row">
-                        {% block content %}
-                        {% for k in products %}
-                        <div class="col-md-4" style="padding-top: 10px;">
-                            <div class="card" style="width: 20rem;">
-                                {% if k.ProductImage %}
-                                <img src="/media/{{ k.ProductImage }}" class="card-img-top" alt="Product Image" style="height: 300px;">
-                                {% endif %}
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ k.ProductName }}</h5>
-                                    <h7 class="card-title">{{ k.ProductPrice }}€</h7>
-                                    <p class="card-text">{{ k.ProductDescription }}</p>
-                                    <a href="#" class="btn btn-primary">Comprar</a>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                        {% endblock %}
-                        </div>
-                    </div>
->>>>>>> Stashed changes
-            </div>
-        </section>
-    </body>
-    <!--main--section-end-->
-
-    <!--sugested-->
-    <section id="categories">
-       
-    </section>
+        
+            <!--navigation-->
+            <nav class="navigation">
+                <!--logo-->
+                <h1>Atualizar dados do Utilizador</h1>
+    
+                <!--right-->
+                <div class="right-elements">
+                    <!--login-->
+                    <a href="/" class="login">
+                        <i class="fa fa-power-off"></i>
+                    </a>
+                </div>
+            </nav>
+    
+            <center>
+            <form action="" method="POST" enctype="multipart/form-data" style="padding-top:200px; width: 10%;">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br>
+                <input type="submit" value="Guardar Alterações">
+            </form>
+            
+        <body>
     
     
-    <!--end-sugested-->
-    <!--footer-->
-    <footer>
+    
+    <footer style="padding-top:100px">
         <div class="footer-content">
             <h3>Time2Play</h3>
             <p>Time2Play é uma plataforma de compra e venda de videojogos. Aqui poderá encontrar os melhores jogos para a sua plataforma favorita.</p>
@@ -111,5 +93,6 @@
            Time2Play | Designed by Time2Play @ ESTGV - BD_II
         </div>
     </footer>
+    </center>
     <!--footer-end-->
-</html>
+    </html>

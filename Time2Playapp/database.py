@@ -15,7 +15,12 @@ def registo(nome, email, password, tipo, UserStatus):
 def login(email, password):
     if User.objects.filter(UserEmail=email):
         user = User.objects.get(UserEmail=email)
+<<<<<<< Updated upstream
         if check_password(password, user.UserPassword) and user.UserType == 'Parceiro' or user.UserType == 'parceiro' and user.UserStatus == True:
+=======
+        userid = user.UserId
+        if check_password(password, user.UserPassword) and user.UserType == 'Parceiro' or user.UserType == 'parceiro' and user.UserStatus == "True":
+>>>>>>> Stashed changes
             print('dados corretos')
             return 'Parceiro'
         elif check_password(password, user.UserPassword) and user.UserType == 'Admin' or user.UserType == 'admin':
@@ -28,7 +33,7 @@ def login(email, password):
             print('dados corretos')
             return 'C2'
         elif check_password(password, user.UserPassword) and user.UserType == 'Cliente' or user.UserType == 'cliente':
-            return 'Cliente'
+            return userid
         else:
             return False
     else:

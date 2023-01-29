@@ -13,7 +13,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
-       
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         {% load static %}
         <!--CSS-->
         <link rel="stylesheet" href="{% static 'css\MainPage.css' %}"> 
@@ -27,12 +27,16 @@
         <!--navigation-->
         <nav class="navigation">
             <!--logo-->
-            <a class="logo">Time2Play - Your VideoGame Marketplace</a>
+            <a class="logo">Time2Play - Xbox Games </a>
+            
+            
+            </a>
 
             <!--menu-->
             <ul class="menu">
                 <li><a href="#filtros" class="active">Explora-nos</a></li> <!--Abre uma página onde serão mostradas as plataformas-->
             </ul>
+            
 
             <!--right-->
             <div class="right-elements">
@@ -52,13 +56,11 @@
             </div>
         </nav>
 
-<<<<<<< Updated upstream
-        <!--main section-->
-        <section id="main">
-            <!--main content section-->
-            <div class="main-content">
-               
-=======
+        
+        <h3 style="padding-top: 100px; padding-left: 10%;">Jogos para Xbox</h3>
+
+        
+
             <div class="main-content" style="z-index: 20; padding-top: 15px;" >
                 <!--main section-->
                     <div class="container">
@@ -82,9 +84,7 @@
                         {% endblock %}
                         </div>
                     </div>
->>>>>>> Stashed changes
-            </div>
-        </section>
+            </div
     </body>
     <!--main--section-end-->
 
@@ -96,7 +96,8 @@
     
     <!--end-sugested-->
     <!--footer-->
-    <footer>
+    <center>
+        <footer style="padding-top: 80px; padding-bottom: 20px;">
         <div class="footer-content">
             <h3>Time2Play</h3>
             <p>Time2Play é uma plataforma de compra e venda de videojogos. Aqui poderá encontrar os melhores jogos para a sua plataforma favorita.</p>
@@ -111,5 +112,6 @@
            Time2Play | Designed by Time2Play @ ESTGV - BD_II
         </div>
     </footer>
+    </center>
     <!--footer-end-->
 </html>

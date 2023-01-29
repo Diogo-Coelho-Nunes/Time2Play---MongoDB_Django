@@ -60,7 +60,8 @@ def login(request):
         elif resultado == 'C2':
             print('Login efetuado com sucesso!')
             return redirect('/c2')
-        elif resultado == 'Cliente':
+        elif resultado == resultado:
+           request.session['id']=resultado
            print('Login efetuado com sucesso!')
            return redirect('/cliente')
     context = {}
@@ -202,3 +203,57 @@ def listpedirproc(request):
         products = database.funcao4()
         context = {'products': products}
         return render(request, 'Adm_templates/PedirProdList.html', context=context)
+<<<<<<< Updated upstream
+=======
+
+def pedirproc(request):
+    if request.method == 'GET':
+        products = database.funcao4()
+        context = {'products': products}
+        return render(request, 'C1_templates/PedirProdList.html', context=context)
+
+#Cliente
+
+def client(request):
+    if request.method == 'GET':
+        products = Product.objects.order_by('ProductPrice')[:6]
+        context = {'products': products}
+    return render(request, 'Clients_templates/Client_main_page.html', context = context)
+
+def categorias(request):
+    context = {}
+    return render(request, 'Clients_templates/Categorias.html', context = context)
+
+def playstation_list(request):
+    products = database.listjogosPS()
+    context = {'products': products}
+    return render(request,'Clients_templates/PlayStation_list.html',context=context)
+
+def xbox_list(request):
+    products = database.listjogosXbox()
+    context = {'products': products}
+    return render(request,'Clients_templates/Xbox_list.html',context=context)
+
+def pc_list(request):
+    products = database.listjogosPC()
+    context = {'products': products}
+    return render(request,'Clients_templates/PC_list.html',context=context)
+
+def nintendo_list(request):
+    products = database.listjogosNintendo()
+    context = {'products': products}
+    return render(request,'Clients_templates/Nintendo_list.html',context=context)
+
+def perfil(request):
+    userid = request.session.get('id')
+    user = User.objects.get(pk = userid)
+    form = changeperfil(request.POST or None,instance=user)
+    if form.is_valid():
+        password = form.cleaned_data['UserPassword']
+        password_enc = make_password(password)
+        Users = User.objects.filter(UserId = userid).update(UserName=form.cleaned_data['UserName'],UserEmail=form.cleaned_data['UserEmail'],UserPassword=password_enc)
+            
+        return redirect('/cliente')
+    
+    return render(request, 'Clients_templates/perfil.html', {'form': form})
+>>>>>>> Stashed changes

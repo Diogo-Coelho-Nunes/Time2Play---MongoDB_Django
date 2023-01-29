@@ -2,14 +2,13 @@
     --INSERT Order
 CREATE OR REPLACE PROCEDURE InsertOrder(
     IN UserId INTEGER,
-    IN OrderDate timestamp,
     IN OrderTotalPrice FLOAT
 )
 LANGUAGE plpgsql
 AS $$
     BEGIN
-        INSERT INTO Orders(OrderId,UserId, OrderDate, OrderTotalPrice)
-        VALUES(nextval('OrderId_Sequence'),UserId, OrderDate, OrderTotalPrice);
+        INSERT INTO Orders(OrderId,UserId,OrderTotalPrice)
+        VALUES(nextval('OrderId_Sequence'),UserId,OrderTotalPrice);
     END
 $$;
 --CALL InsertOrder();

@@ -21,7 +21,24 @@
        
         {% load static %}
         <!--CSS-->
-        <link rel="stylesheet" href="{% static 'css\MainPage.css' %}">               
+        <link rel="stylesheet" href="{% static 'css\MainPage.css' %}">
+        {% block js %}
+        <script>
+            function comprar(ProductId){
+                Swal.fire({
+                    "title": "Queres adicionar ao carrinho?",
+                    "text": "Não podes recuperar esta ação",
+                    "icon": "question",
+                    "showCancelButton": true
+                })
+                .then(function(result){
+                    if(result.isConfirmed){
+                        window.location.href = "addcartnouser/"+ProductId+"/"
+                    }
+                })
+            }
+        </script>
+    {% endblock %}              
     </head>
 
     <body>
@@ -68,7 +85,7 @@
                                     <h5 class="card-title">{{ k.ProductName }}</h5>
                                     <h7 class="card-title">{{ k.ProductPrice }}€</h7>
                                     <p class="card-text">{{ k.ProductDescription }}</p>
-                                    <a href="#" class="btn btn-primary">Comprar</a>
+                                    <button type="button" class="btn btn-primary" onclick="comprar('{{k.ProductId}}')">Comprar</button>
                                 </div>
                             </div>
                         </div>
@@ -99,4 +116,5 @@
         </footer>
         <!--footer-end-->
     </center>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

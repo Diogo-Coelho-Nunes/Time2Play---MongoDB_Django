@@ -25,6 +25,8 @@ urlpatterns = [
     path('', views.MainPage),
     path('login/registo/', views.popularUser),
     path('login/', views.login),
+    path('addcartnouser/<int:id>/', views.addCartNoUser),
+    path('cart/', views.cartNoUser),
 
     path('c1/', views.c1),
     path('c1/addPrdt/', views.addPrdt),
@@ -63,5 +65,8 @@ urlpatterns = [
     path('cliente/nintendo', views.nintendo_list),
     path('cliente/playstation', views.playstation_list),
     path('cliente/perfil', views.perfil),
+    path('cliente/addcart/<int:id>/',views.addCartUser),
+    path('cliente/cart', views.cart),
+    path('cliente/finalizar/', views.finalizar),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

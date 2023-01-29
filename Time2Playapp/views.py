@@ -63,9 +63,10 @@ def login(request):
         elif resultado == 'C2':
             print('Login efetuado com sucesso!')
             return redirect('/c2')
-        elif resultado == 'Cliente':
-           print('Login efetuado com sucesso!')
-           return redirect('/cliente')
+        elif resultado == resultado:
+            request.session['id'] = resultado
+            print('Login efetuado com sucesso!')
+            return redirect('/cliente')
     context = {}
     return render(request, 'login.html', context = context)
 
@@ -281,7 +282,9 @@ def pedirproc(request):
 #Cliente
 
 def client(request):
-    context = {}
+    if request.method == 'GET':
+        products = Product.objects.order_by('ProductPrice')[:6]
+        context = {'products': products}
     return render(request, 'Clients_templates/Client_main_page.html', context = context)
 
 def categorias(request):
@@ -320,3 +323,58 @@ def perfil(request):
         return redirect('/cliente')
     
     return render(request, 'Clients_templates/perfil.html', {'form': form})
+
+def addCartUser(request,id):
+    userid = request.session.get('id')
+    prdId = id
+    if Cart.objects.filter(Q(ProductId=prdId)).exists():
+        cart = Cart.objects.get(Q(ProductId=prdId))
+        cart.ProductQuantity = cart.ProductQuantity + 1
+        cart.save()
+    else:
+        cart = Cart.objects.create(UserId=userid,ProductId=prdId,ProductQuantity=1,ProductTotalPrice=Product.objects.get(pk=prdId).ProductPrice)
+    return redirect('/cliente')
+
+def cart(request):
+    userid = request.session.get('id')
+    cart = Cart.objects.filter(UserId=userid)
+    context = {'cart': cart}
+    return render(request, 'Clients_templates/Cart.html', context=context)
+
+def addCartNoUser(request,id):
+    prdId = id
+    print(prdId)
+    if Cart.objects.filter(Q(ProductId=prdId)&Q(UserId=0)).exists():
+        cart = Cart.objects.get(Q(ProductId=prdId))
+        cart.ProductQuantity = cart.ProductQuantity + 1
+        cart.save()
+        print('existe')
+    else:
+        print('antes')
+        cart = Cart.objects.create(UserId=0,ProductId=prdId,ProductQuantity=1,ProductTotalPrice=Product.objects.get(pk=prdId).ProductPrice)
+        print('depois')
+    return redirect('/')
+
+def cartNoUser(request):
+    cart = Cart.objects.filter(UserId=0)
+    context = {'cart': cart}
+    return render(request, 'Cart.html', context=context)
+   
+def finalizar(request):
+    userid = request.session.get('id')
+    totalprice = 0
+    postgres = connections['second'].cursor()
+    postgres.execute("CALL insertorder(%s,%s);",(userid,totalprice))
+    #get quantatity of products
+    cart = Cart.objects.filter(UserId=userid)
+
+    for item in cart:
+        prodid = item.ProductId
+        quant = item.ProductQuantity
+        price = item.ProductTotalPrice
+        totalprice = totalprice + (quant * price)
+        postgres.execute("CALL maxid(%s,%s,%s)",(prodid,quant,totalprice))
+    
+    connections['second'].commit()
+    postgres.close()
+    return redirect('/cliente')

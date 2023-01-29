@@ -88,3 +88,22 @@ def funcao3():
 def funcao4():
     if Product.objects.filter(Q(ProductUserId='parceiro')&Q(ProductQuantity__lte=10)):
         return Product.objects.filter(Q(ProductUserId='parceiro')&Q(ProductQuantity__lte=10))
+
+
+
+
+def listjogosPC():
+    if Product.objects.filter(ProductTypeId=1):
+        return Product.objects.filter(ProductTypeId=1)
+        
+def listjogosXbox():
+    if Product.objects.filter(ProductTypeId=2):
+        return Product.objects.filter(ProductTypeId=2)
+
+def listjogosPS():
+    if Product.objects.filter(ProductTypeId=3):
+        return Product.objects.filter(ProductTypeId=3)
+
+def listjogosNintendo():
+    if Product.objects.filter(ProductTypeId=4):
+        return Product.objects.filter(ProductTypeId=4)

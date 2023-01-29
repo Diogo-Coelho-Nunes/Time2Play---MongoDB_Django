@@ -120,3 +120,19 @@ class editPrdtFormParc(ModelForm):
             'ProductPrice': forms.TextInput(attrs={'class': 'form-control'}),
             'ProductQuantity': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+class changeperfil(ModelForm):
+    class Meta:
+        model = User
+        fields = ('UserName', 'UserEmail', 'UserPassword')
+        labels = {
+           'UserName': 'Nome',
+           'UserEmail': 'Email',
+           'UserPassword':'PassWord',
+        }
+        widgets = {
+            'UserName': forms.TextInput(attrs={'class': 'form-control'}),
+            'UserEmail': forms.TextInput(attrs={'class': 'form-control'}),
+            'UserPassword': forms.TextInput(attrs={'class': 'form-control'}),
+            
+        }

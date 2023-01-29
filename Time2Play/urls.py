@@ -37,6 +37,8 @@ urlpatterns = [
     path('c1/chart/', views.count_products),
     path('c1/listclient/', views.list_cliente),
     path('c1/listorders/', views.list_orders),
+    path('c1/pedirproc',views.listxml),
+    path('c1/pedirproclist',views.pedirproc),
 
     path('adm/',views.adm),
     path('adm/aprpar',views.aprpar),
@@ -53,5 +55,13 @@ urlpatterns = [
     path('par/gerirParc/',views.gerirParc),
     path('par/gerirParc/deleteprdParc/<int:id>/',views.deleteprdParc),
     path('par/editarprod/<int:id>/',views.editarproc),
+
+    path('cliente/', views.client),
+    path('cliente/filtros', views.categorias),
+    path('cliente/xbox', views.xbox_list),
+    path('cliente/pc', views.pc_list),
+    path('cliente/nintendo', views.nintendo_list),
+    path('cliente/playstation', views.playstation_list),
+    path('cliente/perfil', views.perfil),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -259,7 +259,7 @@ def editarproc(request, id):
 def listxml(request):
     response = HttpResponse(content_type='text/plain')
     response['Content-Disposition'] = 'attachment; filename=novosprod.xml'
-    products =  Product.objects.filter(Q(ProductUserId='parceiro')&Q(ProductQuantity__lte=10))
+    products =  Product.objects.filter(Q(ProductUserId='c1')&Q(ProductQuantity__lte=10))
     lines = []
     for prod in products:
         lines.append(f'<Product>\n\t<ID="{prod.ProductId}>\n\t<Name="{prod.ProductName}">\n\t<Quantity="20"/>\n</Product>\n' )
@@ -271,3 +271,52 @@ def listpedirproc(request):
         products = database.funcao4()
         context = {'products': products}
         return render(request, 'Adm_templates/PedirProdList.html', context=context)
+
+def pedirproc(request):
+    if request.method == 'GET':
+        products = database.funcao4()
+        context = {'products': products}
+        return render(request, 'C1_templates/PedirProdList.html', context=context)
+
+#Cliente
+
+def client(request):
+    context = {}
+    return render(request, 'Clients_templates/Client_main_page.html', context = context)
+
+def categorias(request):
+    context = {}
+    return render(request, 'Clients_templates/Categorias.html', context = context)
+
+def playstation_list(request):
+    products = database.listjogosPS()
+    context = {'products': products}
+    return render(request,'Clients_templates/PlayStation_list.html',context=context)
+
+def xbox_list(request):
+    products = database.listjogosXbox()
+    context = {'products': products}
+    return render(request,'Clients_templates/Xbox_list.html',context=context)
+
+def pc_list(request):
+    products = database.listjogosPC()
+    context = {'products': products}
+    return render(request,'Clients_templates/PC_list.html',context=context)
+
+def nintendo_list(request):
+    products = database.listjogosNintendo()
+    context = {'products': products}
+    return render(request,'Clients_templates/Nintendo_list.html',context=context)
+
+def perfil(request):
+    userid = request.session.get('id')
+    user = User.objects.get(pk = userid)
+    form = changeperfil(request.POST or None,instance=user)
+    if form.is_valid():
+        password = form.cleaned_data['UserPassword']
+        password_enc = make_password(password)
+        Users = User.objects.filter(UserId = userid).update(UserName=form.cleaned_data['UserName'],UserEmail=form.cleaned_data['UserEmail'],UserPassword=password_enc)
+            
+        return redirect('/cliente')
+    
+    return render(request, 'Clients_templates/perfil.html', {'form': form})

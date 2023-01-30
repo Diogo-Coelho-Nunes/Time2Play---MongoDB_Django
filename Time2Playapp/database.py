@@ -29,6 +29,7 @@ def login(email, password):
             print('dados corretos')
             return 'C2'
         elif check_password(password, user.UserPassword) and user.UserType == 'Cliente' or user.UserType == 'cliente':
+            cart = Cart.objects.filter(UserId=0).update(UserId=userid)
             return userid
         else:
             return False

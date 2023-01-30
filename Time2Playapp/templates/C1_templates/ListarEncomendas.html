@@ -20,7 +20,28 @@
    
     {% load static %}
     <!--CSS-->
-    <link rel="stylesheet" href="{% static 'css\MainPage.css' %}">               
+    <link rel="stylesheet" href="{% static 'css\MainPage.css' %}">~
+    {% block js %}
+    <script>
+        var data = document.getElementById("data").value;
+        print(data);
+        function filtro(data){
+            Swal.fire({
+                "title": "Pesquisar por data?",
+                "text": "Não podes recuperar esta ação",
+                "icon": "question",
+                "confirmButtonText": 'Pesquisar',
+                "showCancelButton": true,
+            })
+            .then(function(result){
+                if(result.isConfirmed){
+                    Swal.fire('Apagado!','O utilizador foi apagado com sucesso','success')
+                    window.location.href = "filtrar/"+data+"/"
+                }
+            })
+        }
+    </script>
+    {% endblock %}               
 </head>
 
 <body>
@@ -40,6 +61,11 @@
    
 
     <h3 style="padding-top: 100px; padding-left: 10%;">Lista de Encomendas</h3>
+    <label for="start">Filtre por data:</label>
+
+    <input type="date" id="data" name="trip-start" placeholder="aaaa-mm-dd">
+    <button type="button" class="btn btn-primary" onclick="filtro(data)">Filtrar</button>
+    
     <table class="table table-striped" style="width: 80%; margin-left: 10%; margin-top: 50px;">
         <thead>
             <tr>
@@ -60,9 +86,31 @@
                 
             </tr>
             {% endfor %}
-        </tbody>s
+        </tbody>
+    </table>
 
 </body>
 
 {% endblock %}
 
+<!--footer-->
+    <center>
+    <footer style="padding-top: 80px; padding-bottom: 20px;">
+        <div class="footer-content">
+            <h3>Time2Play</h3>
+            <p>Time2Play é uma plataforma de compra e venda de videojogos. Aqui poderá encontrar os melhores jogos para a sua plataforma favorita.</p>
+            <ul id="ulfooter">
+                <li id="lifooter"><i class="fa fa-facebook"></i></a></li>
+                <li id="lifooter"><i class="fa fa-twitter"></i></a></li>
+                <li id="lifooter"><i class="fa fa-instagram"></i></a></li>
+                <li id="lifooter"><i class="fa fa-youtube"></i></a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+           Time2Play | Designed by Time2Play @ ESTGV - BD_II
+        </div>
+    </footer>
+    <!--footer-end-->
+</center>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</html>

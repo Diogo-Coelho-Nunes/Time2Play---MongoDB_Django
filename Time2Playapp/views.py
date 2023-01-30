@@ -13,6 +13,14 @@ from django.db.models import Q
 
 # Create your views here.
 def MainPage(request):
+    """ if request.session['id'] is None:
+        id = request.session['id']
+        carts = Cart.objects.filter(UserId=id)
+        carts.delete()
+        print(id)
+        del request.session['id']
+        print(id) """
+
     if request.method == 'GET':
         products = Product.objects.order_by('ProductPrice')[:6]
         context = {'products': products}
@@ -329,7 +337,11 @@ def addCartUser(request,id):
     prdId = id
     if Cart.objects.filter(Q(ProductId=prdId)).exists():
         cart = Cart.objects.get(Q(ProductId=prdId))
-        cart.ProductQuantity = cart.ProductQuantity + 1
+        if cart.ProductQuantity < Product.objects.get(pk=prdId).ProductQuantity:
+            cart.ProductQuantity = cart.ProductQuantity + 1
+            Product.objects.get(pk=prdId).ProductQuantity = Product.objects.get(pk=prdId).ProductQuantity - 1
+        else:
+            print('Não pode comprar mais do que o stock')
         cart.save()
     else:
         cart = Cart.objects.create(UserId=userid,ProductId=prdId,ProductQuantity=1,ProductTotalPrice=Product.objects.get(pk=prdId).ProductPrice)
@@ -378,3 +390,42 @@ def finalizar(request):
     connections['second'].commit()
     postgres.close()
     return redirect('/cliente')
+
+def cartNoUserLogin(request):
+    if request.method == 'POST':
+        email = request.POST.get('UserEmail')
+        password = request.POST.get('UserPassword')
+        resultado = database.login(email, password)
+
+        if resultado == resultado:
+            request.session['id'] = resultado
+
+            print('Login efetuado com sucesso!')
+
+
+            return redirect('/cliente/cart')
+    context = {}
+    return render(request, 'login.html', context = context)
+
+def orders_list(request):
+    userid = request.session.get('id')
+    print(userid)
+    if request.method == 'GET':
+        postgres = connections['second'].cursor()
+        #call postgres view with an id
+        postgres.execute("SELECT * FROM OrdersView WHERE UserId = %s", [userid])
+    
+        orders = postgres.fetchall()
+        postgres.close()
+        context = {'orders': orders}
+    return render(request, 'Clients_templates/ListarEncomendas.html', context=context)
+
+def list_orders_filter(request,data):
+    print('data')
+    postgres = connections['second'].cursor()
+    #call postgres function with a date
+    postgres.execute("SELECT total_encomendas(%s)",[data])
+    orders = postgres.fetchall()
+    postgres.close()
+    context = {'orders': orders}
+    return render(request, 'Clients_templates/ListarEncomendas.html', context=context)

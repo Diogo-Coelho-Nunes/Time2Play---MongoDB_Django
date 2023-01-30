@@ -27,6 +27,7 @@ urlpatterns = [
     path('login/', views.login),
     path('addcartnouser/<int:id>/', views.addCartNoUser),
     path('cart/', views.cartNoUser),
+    path('cart/login', views.cartNoUserLogin),
 
     path('c1/', views.c1),
     path('c1/addPrdt/', views.addPrdt),
@@ -41,6 +42,7 @@ urlpatterns = [
     path('c1/listorders/', views.list_orders),
     path('c1/pedirproc',views.listxml),
     path('c1/pedirproclist',views.pedirproc),
+    path('c1/listorders/filtrar/<str:data>/', views.list_orders_filter),
 
     path('adm/',views.adm),
     path('adm/aprpar',views.aprpar),
@@ -68,5 +70,6 @@ urlpatterns = [
     path('cliente/addcart/<int:id>/',views.addCartUser),
     path('cliente/cart', views.cart),
     path('cliente/finalizar/', views.finalizar),
+    path('cliente/clientpage', views.orders_list),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

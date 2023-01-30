@@ -8,7 +8,7 @@ AS $$
         RETURN (SELECT COUNT(*) FROM orders WHERE orderdate <= data);
     END
 $$;
---SELECT total_encomendas('2023-01-15');
+SELECT total_encomendas('2023-01-15');
 
     --Total de encomendas feitas entre duas datas
 CREATE OR REPLACE FUNCTION total_encomendas_entre_datas(data1 date, data2 date)

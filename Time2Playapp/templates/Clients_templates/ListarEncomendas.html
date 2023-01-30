@@ -20,32 +20,14 @@
    
     {% load static %}
     <!--CSS-->
-    <link rel="stylesheet" href="{% static 'css\MainPage.css' %}">
-    {% block js %}
-        <script>
-            function finalizarl(){
-
-                Swal.fire({
-                    "title": "Tens de realizar login para finalizar esta operação!",
-                    "text": "Não podes recuperar esta ação",
-                    "icon": "question",
-                    "showCancelButton": true
-                })
-                .then(function(result){
-                    if(result.isConfirmed){
-                        window.location.href = "login"
-                    }
-                })
-            }
-        </script>
-    {% endblock %}               
+    <link rel="stylesheet" href="{% static 'css\MainPage.css' %}">               
 </head>
 
 <body>
     <!--navigation-->
     <nav class="navigation">
         <!--logo-->
-        <a class="logo">Time2Play - Your VideoGame Marketplace</a>
+        <a class="logo">Time2Play - Your VideoGame Marketplace -> Comercial 1</a>
 
         <!--right-->
         <div class="right-elements">
@@ -57,37 +39,37 @@
     </nav>
    
 
-    <h3 style="padding-top: 100px; padding-left: 10%;">Carrinho</h3>
+    <h3 style="padding-top: 100px; padding-left: 10%;">Lista de Encomendas</h3>
     <table class="table table-striped" style="width: 80%; margin-left: 10%; margin-top: 50px;">
         <thead>
             <tr>
-                <th scope="col">CartId</th>
-                <th scope="col">ProductId</th>
-                <th scope="col">ProductQuantity</th>
-                <th scope="col">ProductTotalPrice</th>
-
-                
+                <th scope="col">OrderId</th>
+                <th scope="col">Data</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Preço</th>
                 
             </tr>
         </thead>
         <tbody>
-            {% for k in cart %}
+            {% for k in orders %}
             <tr>
-                <th scope="row">{{ k.CartId }}</th>
-                <td>{{ k.ProductId }}</td>
-                <td>{{ k.ProductQuantity }}</td>
-                <td>{{ k.ProductTotalPrice }} * {{ k.ProductQuantity }}</td>
+                <th scope="row">{{ k.0 }}</th>
+                <td>{{ k.2 }}</td>
+                <td>{{ k.3 }}</td>
+                <td>{{ k.4 }}</td>
                 
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <button type="button" class="btn btn-primary" onclick="finalizarl()" style="margin-left: 10%; margin-top: 50px;">Finalizar Compra</button>
+
 </body>
+
 {% endblock %}
+
 <!--footer-->
 <center>
-    <footer>
+    <footer style="padding-top: 80px; padding-bottom: 20px;">
         <div class="footer-content">
             <h3>Time2Play</h3>
             <p>Time2Play é uma plataforma de compra e venda de videojogos. Aqui poderá encontrar os melhores jogos para a sua plataforma favorita.</p>
@@ -99,7 +81,7 @@
             </ul>
         </div>
         <div class="footer-bottom">
-        Time2Play | Designed by Time2Play @ ESTGV - BD_II
+           Time2Play | Designed by Time2Play @ ESTGV - BD_II
         </div>
     </footer>
     <!--footer-end-->

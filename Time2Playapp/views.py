@@ -185,6 +185,7 @@ def nintendo_list(request):
     return render(request,'Clients_templates/Nintendo_list.html',context=context)
 
 def perfil(request):
+    #del request.session['id']
     userid = request.session.get('id')
     user = User.objects.get(pk = userid)
     form = changeperfil(request.POST or None,instance=user)

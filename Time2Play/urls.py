@@ -45,7 +45,7 @@ urlpatterns = [
     path('c1/listorders/filtrar/<str:data>/', views.list_orders_filter),
 
     path('c2/', views.c2),
-    path('c2/listPrdt/', views.listPrdt),
+    path('c2/listPrdt/', views.listPrdt2),
     path('c2/sales/', views.addSale2),
     path('c2/removeSales/', views.removeSale),
     path('c2/pedirproc',views.listxml),

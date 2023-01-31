@@ -133,6 +133,6 @@ class changeperfil(ModelForm):
         widgets = {
             'UserName': forms.TextInput(attrs={'class': 'form-control'}),
             'UserEmail': forms.TextInput(attrs={'class': 'form-control'}),
-            'UserPassword': forms.TextInput(attrs={'class': 'form-control'}),
+            'UserPassword': forms.PasswordInput(attrs={'class': 'form-control'}),
             
         }

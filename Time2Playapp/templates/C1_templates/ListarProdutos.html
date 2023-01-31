@@ -26,13 +26,14 @@
     <script>
         function deleteprdt(ProductId){
             Swal.fire({
-                "title": "Queres apagar o utilizador?",
+                "title": "Queres apagar o produto?",
                 "text": "Não podes recuperar esta ação",
                 "icon": "question",
                 "showCancelButton": true
             })
             .then(function(result){
                 if(result.isConfirmed){
+                    Swal.fire('O produto foi apagado com sucesso','success')
                     window.location.href = "deleteprdt/"+ProductId+"/"
                 }
             })
@@ -47,6 +48,7 @@
             })
             .then(function(result){
                 if(result.isConfirmed){
+                    Swal.fire('O estado do produto foi atualizado','success')
                     window.location.href = "partnerPrdt/AlterarStatusProduto/"+ProductId+"/"
                 }
             })

@@ -48,6 +48,7 @@ urlpatterns = [
     path('c1/pedirproc',views.listxml),
     path('c1/pedirproclist',views.pedirproc),
     path('c1/listorders/filtrar/<str:data>/', views.list_orders_filter),
+    path('c1/partnerPrdt/partnerPrdt/AlterarStatusProduto/<int:ProductId>/', views.ChangePrdtStatus),
 
     path('c2/', views.c2),
     path('c2/listPrdt/', views.listPrdt2),

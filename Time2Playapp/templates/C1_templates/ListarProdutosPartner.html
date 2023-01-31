@@ -22,6 +22,24 @@
     {% load static %}
     <!--CSS-->
     <link rel="stylesheet" href="{% static 'css\MainPage.css' %}">
+    {% block js %}
+    <script>
+        function editarestado(ProductId){
+            Swal.fire({
+                "title": "Queres editar o estado do produto?",
+                "text": "Não podes recuperar esta ação",
+                "icon": "question",
+                "showCancelButton": true
+            })
+            .then(function(result){
+                if(result.isConfirmed){
+                    Swal.fire('O estado do produto foi atualizado','success')
+                    window.location.href = "partnerPrdt/AlterarStatusProduto/"+ProductId+"/"
+                }
+            })
+        }
+        </script>
+    {% endblock %}
 </head>
 
 <body>
@@ -57,6 +75,7 @@
                             <h5 class="card-title">{{ k.ProductName }}</h5>
                             <h7 class="card-title">{{ k.ProductPrice }}€</h7>
                             <p class="card-text">{{ k.ProductDescription }}</p>
+                            <button type="button" class="btn btn-primary" onclick="editarestado('{{k.ProductId}}')">Editar estado</button>
                         </div>
                     </div>
                 </div>

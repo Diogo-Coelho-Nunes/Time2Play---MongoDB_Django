@@ -85,11 +85,12 @@
         </thead>
         <tbody>
             {% for k in cart %}
+            {% load mathfilters %}
             <tr>
                 
                 <td>{{ k.ProductId }}</td>
                 <td>{{ k.ProductQuantity }}</td>
-                <td>{{ k.ProductTotalPrice }} * {{ k.ProductQuantity }}</td>
+                <td>{{ k.ProductTotalPrice|mul:k.ProductQuantity}}€</td>
                 
             </tr>
             {% endfor %}

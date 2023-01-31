@@ -15,7 +15,7 @@ from django.db.models import Q
 # Create your views here.
 def MainPage(request):
     if request.method == 'GET':
-        products = Product.objects.order_by('ProductPrice')[:6]
+        products = Product.objects.filter(ProductStatus='True').order_by('ProductPrice')[:6]
         context = {'products': products}
     return render(request, 'MainPage.html', context = context)
 

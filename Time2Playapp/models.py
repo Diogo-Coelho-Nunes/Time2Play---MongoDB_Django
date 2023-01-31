@@ -25,7 +25,7 @@ class Product(models.Model):
     ProductQuantity = models.IntegerField()
     ProductImage = models.ImageField(null=True,blank=True,upload_to="images/")
     ProductTypeId = models.IntegerField()
-    ProductStatus = models.CharField(max_length=100,default='True') # #Ativo, Inativo, Fica "False" se o gestor enetender que não é um bom produto para venda
+    ProductStatus = models.CharField(max_length=100,default='False') # #Ativo, Inativo, Fica "False" se o gestor enetender que não é um bom produto para venda
     ProductUserId = models.TextField() #Id do utilizador que adicionou o produto: c1, parceiro
 
 #Sales model

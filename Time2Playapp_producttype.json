@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "63c52b801df61f77e10ee708"
+  },
+  "ProductTypeId": 1,
+  "ProductTypeName": "PC"
+},{
+  "_id": {
+    "$oid": "63c52bff1df61f77e10ee70a"
+  },
+  "ProductTypeId": 2,
+  "ProductTypeName": "XBox"
+},{
+  "_id": {
+    "$oid": "63c52c131df61f77e10ee70b"
+  },
+  "ProductTypeId": 3,
+  "ProductTypeName": "PlayStation"
+},{
+  "_id": {
+    "$oid": "63c52c201df61f77e10ee70c"
+  },
+  "ProductTypeId": 4,
+  "ProductTypeName": "Nintendo"
+}]

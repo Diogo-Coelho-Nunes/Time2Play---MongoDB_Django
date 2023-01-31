@@ -91,17 +91,17 @@ def funcao4():
 
 #Client
 def listjogosPC():
-    if Product.objects.filter(ProductTypeId=1):
-        return Product.objects.filter(ProductTypeId=1)
+    if Product.objects.filter(Q(ProductStatus='True')&Q(ProductTypeId=1)):
+        return Product.objects.filter(Q(ProductStatus='True')&Q(ProductTypeId=1))
         
 def listjogosXbox():
-    if Product.objects.filter(ProductTypeId=2):
-        return Product.objects.filter(ProductTypeId=2)
+    if Product.objects.filter(Q(ProductStatus='True')&Q(ProductTypeId=2)):
+        return Product.objects.filter(Q(ProductStatus='True')&Q(ProductTypeId=2))
 
 def listjogosPS():
-    if Product.objects.filter(ProductTypeId=3):
-        return Product.objects.filter(ProductTypeId=3)
+    if Product.objects.filter(Q(ProductStatus='True')&Q(ProductTypeId=3)):
+        return Product.objects.filter(Q(ProductStatus='True')&Q(ProductTypeId=3))
 
 def listjogosNintendo():
-    if Product.objects.filter(ProductTypeId=4):
-        return Product.objects.filter(ProductTypeId=4)
+    if Product.objects.filter(Q(ProductStatus='True')&Q(ProductTypeId=4)):
+        return Product.objects.filter(Q(ProductStatus='True')&Q(ProductTypeId=4))

@@ -1,0 +1,51 @@
+[{
+  "_id": {
+    "$oid": "63c29ecc485a332514f5058b"
+  },
+  "UserId": 1,
+  "UserName": "Diogo Nunes",
+  "UserEmail": "nunes.diogo01@gmail.com",
+  "UserPassword": "pbkdf2_sha256$390000$lOVkIFR2yMW95MJRzCH6FZ$P1bBWVaft2OVa1iqz1sPTr5fMzFg6+AZUH4vJNMg5vk=",
+  "UserType": "Admin",
+  "UserStatus": "True"
+},{
+  "_id": {
+    "$oid": "63c29ef2485a332514f5058c"
+  },
+  "UserId": 2,
+  "UserName": "Comercial1",
+  "UserEmail": "comercial1@gmail.com",
+  "UserPassword": "pbkdf2_sha256$390000$VWSl8BZIYz6cLGoGmW3hIM$LDe0KngiZ43i+0oasMR6OsADi04ISiTlieI5oLI4+7E=",
+  "UserType": "C1",
+  "UserStatus": "True"
+},{
+  "_id": {
+    "$oid": "63c55e53c2d16438d35e5c09"
+  },
+  "UserId": 3,
+  "UserName": "Parceiro",
+  "UserEmail": "parceiro@gmail.com",
+  "UserPassword": "pbkdf2_sha256$390000$1EtnTdY2NwyLWl0FfKy2cx$6Vmkd5zAiBhYC/xRqJxK67EP4ql1tc4x6k6O/LAf6zY=",
+  "UserType": "Parceiro",
+  "UserStatus": "True"
+},{
+  "_id": {
+    "$oid": "63cd099153905d8d41f541c5"
+  },
+  "UserId": 5,
+  "UserName": "Client 2",
+  "UserEmail": "client2@gmail.com",
+  "UserPassword": "pbkdf2_sha256$260000$8DKg7Xp6BCxYLcxWH5M7vC$ePU+bP7C6eFHlE93oUmZG5DgUa4qxYqElaGCPYW+bfM=",
+  "UserType": "Cliente",
+  "UserStatus": true
+},{
+  "_id": {
+    "$oid": "63d90f52cd419e2b5b6ee3bd"
+  },
+  "UserId": 8,
+  "UserName": "Comercial2",
+  "UserEmail": "comercial2@gmail.com",
+  "UserPassword": "pbkdf2_sha256$260000$Usjf7GyKru8VNFQ6v01cA9$iXTqN43rEyyeUy8dd4iuGiVpJxRCAJmz5TzrH+8CafA=",
+  "UserType": "C2",
+  "UserStatus": "True"
+}]

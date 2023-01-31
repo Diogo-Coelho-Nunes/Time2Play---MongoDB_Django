@@ -95,7 +95,7 @@ def addPrdt(request):
 
 def listPrdt(request):
     if request.method == 'GET':
-        products = Product.objects.all()
+        products = Product.objects.filter(ProductStatus='True')
         context = {'products': products}
         return render(request, 'C1_templates/ListarProdutos.html', context=context)
 

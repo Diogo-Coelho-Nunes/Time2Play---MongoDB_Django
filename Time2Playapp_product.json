@@ -1,0 +1,53 @@
+[{
+  "_id": {
+    "$oid": "63c91a954fbfab7461d9be4d"
+  },
+  "ProductId": 26,
+  "ProductName": "Black",
+  "ProductDescription": "FPS Game",
+  "ProductPrice": 9.99,
+  "ProductQuantity": 6,
+  "ProductImage": "images/wp9723145_BSSdCKB.jpg",
+  "ProductTypeId": 3,
+  "ProductStatus": "True",
+  "ProductUserId": "c1"
+},{
+  "_id": {
+    "$oid": "63c91acc4fbfab7461d9be4e"
+  },
+  "ProductId": 27,
+  "ProductName": "Need for Speed",
+  "ProductDescription": "Racing",
+  "ProductPrice": 14.15,
+  "ProductQuantity": 6,
+  "ProductImage": "images/wp9723145_BSSdCKB.jpg",
+  "ProductTypeId": 1,
+  "ProductStatus": "False",
+  "ProductUserId": "c1"
+},{
+  "_id": {
+    "$oid": "63c91ae54fbfab7461d9be4f"
+  },
+  "ProductId": 28,
+  "ProductName": "Apex",
+  "ProductDescription": "FPS Game",
+  "ProductPrice": 3.99,
+  "ProductQuantity": 6,
+  "ProductImage": "images/wp9723145_BSSdCKB.jpg",
+  "ProductTypeId": 1,
+  "ProductStatus": "True",
+  "ProductUserId": "c1"
+},{
+  "_id": {
+    "$oid": "63d54bb2e543796be0fd5058"
+  },
+  "ProductId": 30,
+  "ProductName": "Among Us",
+  "ProductDescription": "Jogo para crianças",
+  "ProductPrice": 300.99,
+  "ProductQuantity": 3,
+  "ProductImage": "images/wp9723145_83ymEbN.jpg",
+  "ProductTypeId": 1,
+  "ProductStatus": "True",
+  "ProductUserId": "parceiro"
+}]

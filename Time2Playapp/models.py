@@ -42,28 +42,3 @@ class Cart(models.Model):
     ProductQuantity = models.IntegerField()
     ProductTotalPrice = models.FloatField()
     CartStatus = models.BooleanField(default=False) #Passa a True depois de selecionar "comprar" os produtos, estes saem do carrinho e lança-se uma fatura
-
-#Postgres Tabels
-#Order model
-class Order(models.Model):
-    OrderId = models.AutoField(primary_key=True)
-    UserId = models.IntegerField()
-    OrderDate = models.DateTimeField()
-    OrderStatus = models.TextField(max_length=100, default='Em espera') #Em espera, Em preparação, Em transporte, Entregue
-    OrderTotalPrice = models.FloatField()
-
-#Item_Order model
-class Item_Order(models.Model):
-    Item_OrderId = models.AutoField(primary_key=True)
-    OrderId = models.IntegerField()
-    ProductId = models.IntegerField()
-    ProductQuantity = models.IntegerField()
-
-#Invoice model
-class Invoice(models.Model):
-    InvoiceId = models.AutoField(primary_key=True)
-    UserId = models.IntegerField()
-    InvoiceDate = models.DateTimeField()
-    InvoiceTotalPrice = models.FloatField()
-    InvoiceOrderId = models.IntegerField()
-    InvoiceAddress = models.TextField()

@@ -99,6 +99,12 @@ def listPrdt(request):
         context = {'products': products}
         return render(request, 'C1_templates/ListarProdutos.html', context=context)
 
+def listPrdt2(request):
+    if request.method == 'GET':
+        products = Product.objects.all()
+        context = {'products': products}
+        return render(request, 'C2_templates/ListarProdutos.html', context=context)
+
 def addSale(request):
     if request.method == 'POST':
         # Handle form submission

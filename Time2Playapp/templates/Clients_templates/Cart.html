@@ -74,7 +74,7 @@
     <table class="table table-striped" style="width: 80%; margin-left: 10%; margin-top: 50px;">
         <thead>
             <tr>
-                <th scope="col">CartId</th>
+                
                 <th scope="col">ProductId</th>
                 <th scope="col">ProductQuantity</th>
                 <th scope="col">ProductTotalPrice</th>
@@ -86,7 +86,7 @@
         <tbody>
             {% for k in cart %}
             <tr>
-                <th scope="row">{{ k.CartId }}</th>
+                
                 <td>{{ k.ProductId }}</td>
                 <td>{{ k.ProductQuantity }}</td>
                 <td>{{ k.ProductTotalPrice }} * {{ k.ProductQuantity }}</td>

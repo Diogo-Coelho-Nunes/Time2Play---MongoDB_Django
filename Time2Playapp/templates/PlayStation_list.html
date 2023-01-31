@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Time2Play</title>
+
+        <!--icon-->
+        {% load static %} <link rel="shortcut icon" href="{% static 'images/icon.png' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!--import-fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        {% load static %}
+        <!--CSS-->
+        <link rel="stylesheet" href="{% static 'css\MainPage.css' %}"> 
+
+
+               
+    </head>
+
+    <body>
+        
+        <!--navigation-->
+        <nav class="navigation">
+            <!--logo-->
+            <a class="logo">Time2Play - PlayStation Games </a>
+            
+            
+            </a>
+
+            <!--menu-->
+            <ul class="menu">
+                <li><a href="/cliente/filtros" class="active">Explora-nos</a></li> <!--Abre uma página onde serão mostradas as plataformas-->
+            </ul>
+            
+
+            <!--right-->
+            <div class="right-elements">
+                
+                <!--cart-->
+                <a href="cart" class="cart">
+                    <i class="fa fa-shopping-bag"></i>
+                </a>
+
+                <!--login-->
+                <a href="perfil" class="login">
+                    <i class="fa fa-user"></i>
+                </a>
+
+                <!--encomendas-->
+                <a href="clientpage" class="login">
+                    <i class="fa fa-truck"></i>
+                </a>
+
+                <!--logout-->
+                <a href="/" class="login">
+                    <i class="fa fa-power-off"></i>
+                </a>
+                
+            </div>
+        </nav>
+
+        
+        <h3 style="padding-top: 100px; padding-left: 10%;">Jogos para PlayStation</h3>
+
+            <div class="main-content" style="z-index: 20; padding-top: 15px;">
+                <!--main section-->
+                    <div class="container">
+                        <div class="row">
+                        {% block content %}
+                        {% for k in products %}
+                        <div class="col-md-4" style="padding-top: 10px;">
+                            <div class="card" style="width: 20rem;">
+                                {% if k.ProductImage %}
+                                <img src="/media/{{ k.ProductImage }}" class="card-img-top" alt="Product Image" style="height: 300px;">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ k.ProductName }}</h5>
+                                    <h7 class="card-title">{{ k.ProductPrice }}€</h7>
+                                    <p class="card-text">{{ k.ProductDescription }}</p>
+                                    <button type="button" class="btn btn-primary" onclick="comprar('{{k.ProductId}}')">Comprar</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endblock %}
+                        </div>
+                    </div>
+            </div>
+    </body>
+    <!--main--section-end-->
+
+
+    
+    <!--end-sugested-->
+    <!--footer-->
+    <center>
+        <footer style="padding-top: 80px; padding-bottom: 20px;">
+            <div class="footer-content">
+                <h3>Time2Play</h3>
+                <p>Time2Play é uma plataforma de compra e venda de videojogos. Aqui poderá encontrar os melhores jogos para a sua plataforma favorita.</p>
+                <ul id="ulfooter">
+                    <li id="lifooter"><i class="fa fa-facebook"></i></a></li>
+                    <li id="lifooter"><i class="fa fa-twitter"></i></a></li>
+                    <li id="lifooter"><i class="fa fa-instagram"></i></a></li>
+                    <li id="lifooter"><i class="fa fa-youtube"></i></a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+               Time2Play | Designed by Time2Play @ ESTGV - BD_II
+            </div>
+        </footer>
+        <!--footer-end-->
+    </center>
+    <!--footer-end-->
+</html>

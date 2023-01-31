@@ -55,7 +55,7 @@
     <table class="table table-striped" style="width: 80%; margin-left: 10%; margin-top: 50px;">
         <thead>
             <tr>
-                <th scope="col">OrderId</th>
+                
                 <th scope="col">Data</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Preço</th>
@@ -65,7 +65,6 @@
         <tbody>
             {% for k in orders %}
             <tr>
-                <th scope="row">{{ k.0 }}</th>
                 <td>{{ k.2 }}</td>
                 <td>{{ k.3 }}</td>
                 <td>{{ k.4 }}</td>

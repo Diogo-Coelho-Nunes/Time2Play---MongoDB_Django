@@ -28,6 +28,11 @@ urlpatterns = [
     path('addcartnouser/<int:id>/', views.addCartNoUser),
     path('cart/', views.cartNoUser),
     path('cart/login', views.cartNoUserLogin),
+    path('filtros', views.categorias2),
+    path('xbox', views.xbox_list2),
+    path('pc', views.pc_list2),
+    path('nintendo', views.nintendo_list2),
+    path('playstation', views.playstation_list2),
 
     path('c1/', views.c1),
     path('c1/addPrdt/', views.addPrdt),

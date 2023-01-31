@@ -350,6 +350,10 @@ def categorias(request):
     context = {}
     return render(request, 'Clients_templates/Categorias.html', context = context)
 
+def categorias2(request):
+    context = {}
+    return render(request, 'Categorias.html', context = context)
+
 def playstation_list(request):
     products = database.listjogosPS()
     context = {'products': products}
@@ -369,6 +373,26 @@ def nintendo_list(request):
     products = database.listjogosNintendo()
     context = {'products': products}
     return render(request,'Clients_templates/Nintendo_list.html',context=context)
+
+def playstation_list2(request):
+    products = database.listjogosPS()
+    context = {'products': products}
+    return render(request,'PlayStation_list.html',context=context)
+
+def xbox_list2(request):
+    products = database.listjogosXbox()
+    context = {'products': products}
+    return render(request,'Xbox_list.html',context=context)
+
+def pc_list2(request):
+    products = database.listjogosPC()
+    context = {'products': products}
+    return render(request,'PC_list.html',context=context)
+
+def nintendo_list2(request):
+    products = database.listjogosNintendo()
+    context = {'products': products}
+    return render(request,'Nintendo_list.html',context=context)
 
 def perfil(request):
     userid = request.session.get('id')

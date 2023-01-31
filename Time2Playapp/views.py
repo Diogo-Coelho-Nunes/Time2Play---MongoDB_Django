@@ -1,4 +1,5 @@
 from contextlib import _RedirectStream, redirect_stderr
+import datetime
 from django.shortcuts import render, redirect
 from Time2Playapp import database
 from Time2Playapp.models import *
@@ -13,14 +14,6 @@ from django.db.models import Q
 
 # Create your views here.
 def MainPage(request):
-    """ if request.session['id'] is None:
-        id = request.session['id']
-        carts = Cart.objects.filter(UserId=id)
-        carts.delete()
-        print(id)
-        del request.session['id']
-        print(id) """
-
     if request.method == 'GET':
         products = Product.objects.order_by('ProductPrice')[:6]
         context = {'products': products}
@@ -83,6 +76,10 @@ def c1(request):
     context = {}
     return render(request, 'C1_templates/Comercial1_MainPage.html', context = context)
 
+def c2(request):
+    context = {}
+    return render(request, 'C2_templates/Comercial2_MainPage.html', context = context)
+
 def addPrdt(request):
     if request.method == 'POST':
         # Handle form submission
@@ -118,6 +115,22 @@ def addSale(request):
         form = addSaleForm()
     return render(request, 'C1_templates/InserirPromocao.html', {'form': form})
 
+def addSale2(request):
+    if request.method == 'POST':
+        # Handle form submission
+        form = addSaleForm(request.POST)
+        if form.is_valid():
+            sale = form.save(commit=False)
+            sale.save()
+            product = Product.objects.get(ProductTypeId=sale.ProductTypeId)
+            product.ProductPrice = product.ProductPrice * (1-(sale.Promotion/100))
+            product.save()
+            return redirect('/c2')
+    else:
+        # Handle GET request
+        form = addSaleForm()
+    return render(request, 'C2_templates/InserirPromocao.html', {'form': form})
+
 def removeSale(request):
     if request.method == 'POST':
         # Handle form submission
@@ -137,6 +150,26 @@ def removeSale(request):
         # Handle GET request
         form = removeSaleForm()
     return render(request, 'C1_templates/RemoverPromocao.html', {'form': form})
+
+def removeSale2(request):
+    if request.method == 'POST':
+        # Handle form submission
+        form = removeSaleForm(request.POST)
+        if form.is_valid():
+            sale = Sales.objects.filter(ProductTypeId=form.cleaned_data['ProductTypeId'])
+            for sale in sale:
+                try:
+                    product = Product.objects.get(ProductTypeId=sale.ProductTypeId)
+                    product.ProductPrice = product.ProductPrice / (1-(sale.Promotion/100))
+                    product.save()
+                    sale.delete()
+                except: Product.DoesNotExist
+                pass
+            return redirect('/c2')
+    else:
+        # Handle GET request
+        form = removeSaleForm()
+    return render(request, 'C2_templates/RemoverPromocao.html', {'form': form})
 
 def listPartnerPrdt(request):
     if request.method == 'GET':
@@ -180,6 +213,12 @@ def list_orders(request):
         orders = database.list_orders()
         context = context = {'orders': orders}
         return render(request, 'C1_templates/ListarEncomendas.html', context=context)
+
+def list_orders2(request):
+    if request.method == 'GET':
+        orders = database.list_orders()
+        context = context = {'orders': orders}
+        return render(request, 'C2_templates/ListarEncomendas.html', context=context)
 
 #Adm + Parceiro
 def adm(request):
@@ -281,6 +320,12 @@ def listpedirproc(request):
         context = {'products': products}
         return render(request, 'Adm_templates/PedirProdList.html', context=context)
 
+def listpedirproc2(request):
+    if request.method == 'GET':
+        products = database.funcao4()
+        context = {'products': products}
+        return render(request, 'C2_templates/PedirProdList.html', context=context)
+
 def pedirproc(request):
     if request.method == 'GET':
         products = database.funcao4()
@@ -355,7 +400,6 @@ def cart(request):
 
 def addCartNoUser(request,id):
     prdId = id
-    print(prdId)
     if Cart.objects.filter(Q(ProductId=prdId)&Q(UserId=0)).exists():
         cart = Cart.objects.get(Q(ProductId=prdId))
         cart.ProductQuantity = cart.ProductQuantity + 1
@@ -421,11 +465,19 @@ def orders_list(request):
     return render(request, 'Clients_templates/ListarEncomendas.html', context=context)
 
 def list_orders_filter(request,data):
-    print('data')
     postgres = connections['second'].cursor()
     #call postgres function with a date
-    postgres.execute("SELECT total_encomendas(%s)",[data])
+    postgres.execute("SELECT * FROM total_encomendas(%s)",[data])
     orders = postgres.fetchall()
     postgres.close()
     context = {'orders': orders}
-    return render(request, 'Clients_templates/ListarEncomendas.html', context=context)
+    return render(request, 'C1_templates/ListarEncomendas.html', context=context)
+
+def list_orders_filter2(request,data):
+    postgres = connections['second'].cursor()
+    #call postgres function with a date
+    postgres.execute("SELECT * FROM total_encomendas_entre_datas(%s)",[data])
+    orders = postgres.fetchall()
+    postgres.close()
+    context = {'orders': orders}
+    return render(request, 'C2_templates/ListarEncomendas.html', context=context)

@@ -16,23 +16,3 @@ CREATE TABLE IF NOT EXISTS Item_Order(
       FOREIGN KEY(OrderId)
 	  REFERENCES Orders(OrderId)
 );
-
-
-CREATE TABLE IF NOT EXISTS Invoice(
-    InvoiceId INTEGER PRIMARY KEY,
-    UserId INTEGER NOT NULL,
-    InvoiceDate timestamp DEFAULT CURRENT_TIMESTAMP,
-    InvoiceTotalPrice FLOAT NOT NULL,
-    InvoiceOrderId INTEGER NOT NULL,
-    InvoiceAddress VARCHAR(100) NOT NULL,
-    CONSTRAINT fk_Orders
-        FOREIGN KEY(InvoiceOrderId)
-        REFERENCES Orders(OrderId)
-);
-
-
-CREATE TABLE IF NOT EXISTS Acquisition(
-    AcquisitionId INTEGER PRIMARY KEY,
-    UserId INTEGER NOT NULL,
-    AcquisitionDate timestamp DEFAULT CURRENT_TIMESTAMP
-);

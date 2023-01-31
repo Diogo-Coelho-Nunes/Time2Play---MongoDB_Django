@@ -44,6 +44,15 @@ urlpatterns = [
     path('c1/pedirproclist',views.pedirproc),
     path('c1/listorders/filtrar/<str:data>/', views.list_orders_filter),
 
+    path('c2/', views.c2),
+    path('c2/listPrdt/', views.listPrdt),
+    path('c2/sales/', views.addSale2),
+    path('c2/removeSales/', views.removeSale),
+    path('c2/pedirproc',views.listxml),
+    path('c2/pedirproclist2',views.pedirproc),
+    path('c2/listorders2/', views.list_orders2),
+    path('c2/listorders2/filtrar/<str:data>/', views.list_orders_filter2),
+
     path('adm/',views.adm),
     path('adm/aprpar',views.aprpar),
     path('adm/criarut',views.criarut),

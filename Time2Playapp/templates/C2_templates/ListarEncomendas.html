@@ -20,11 +20,13 @@
    
     {% load static %}
     <!--CSS-->
-    <link rel="stylesheet" href="{% static 'css\MainPage.css' %}">~
+    <link rel="stylesheet" href="{% static 'css\MainPage.css' %}">
     {% block js %}
     <script>      
         function filtro(){
-            var data = document.getElementById("data_data").value;
+            var data1 = document.getElementById("data_data1").value;
+            var data2 = document.getElementById("data_data2").value;
+    
             Swal.fire({
                 "title": "Pesquisar por data?",
                 "text": "Não podes recuperar esta ação",
@@ -36,7 +38,7 @@
                 console.log(result)
                 if(result.isConfirmed){
                     Swal.fire('Aui estão as encomendas até à data','success')
-                    window.location.href = "filtrar/"+data+"/"
+                    window.location.href = "filtrar/"+data1+"."+data2+"/"
                 }
             })
         }
@@ -66,7 +68,8 @@
     <h3 style="padding-top: 100px; padding-left: 10%;">Lista de Encomendas</h3>
     <label for="start">Filtre por data:</label>
 
-    <input type="date" id="data_data" name="trip-start" placeholder="aaaa-mm-dd">
+    <input type="date" id="data_data1" name="trip-start" placeholder="aaaa-mm-dd">
+    <input type="date" id="data_data2" name="trip-start" placeholder="aaaa-mm-dd">
     <button type="button" class="btn btn-primary" onclick="filtro()">Filtrar</button>
     
     <table class="table table-striped" style="width: 80%; margin-left: 10%; margin-top: 50px;">

@@ -32,6 +32,7 @@
                 })
                 .then(function(result){
                     if(result.isConfirmed){
+                        Swal.fire('Sucesso!','Encomenda gerada com sucesso','success')
                         window.location.href = "finalizar/"
                     }
                 })
